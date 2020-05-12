@@ -1,0 +1,6 @@
+jupyterlab==2.1.1 
+pip==20.1
+ipywidgets==7.5.1
+IPython==7.8.0
+voila
+widget-periodictable
