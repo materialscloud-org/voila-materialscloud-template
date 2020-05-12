@@ -198,8 +198,6 @@ a.anchor-link {
 {%- block body -%}
 {%- block body_header -%}
 <body data-base-url="{{resources.base_url}}voila/">
-  <div id="fb-root"></div>
-  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v7.0"></script>
   <div id="loading">
     <div class="spinner-container">
       <svg class="spinner" data-name="c1" version="1.1" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"><metadata><rdf:RDF><cc:Work rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/><dc:title>voila</dc:title></cc:Work></rdf:RDF></metadata><title>spin</title><path class="voila-spinner-color1" d="m250 405c-85.47 0-155-69.53-155-155s69.53-155 155-155 155 69.53 155 155-69.53 155-155 155zm0-275.5a120.5 120.5 0 1 0 120.5 120.5 120.6 120.6 0 0 0-120.5-120.5z"/><path class="voila-spinner-color2" d="m250 405c-85.47 0-155-69.53-155-155a17.26 17.26 0 1 1 34.51 0 120.6 120.6 0 0 0 120.5 120.5 17.26 17.26 0 1 1 0 34.51z"/></svg>
@@ -226,7 +224,7 @@ a.anchor-link {
           <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span>
           <span class="icon-bar"></span> <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" ui-sref="main.home" href="/home">
+        <a class="navbar-brand" ui-sref="main.home" href="https://www.materialscloud.org/home">
           <img src="{{ resources.base_url }}voila/static/mcloud-logo-98x79.png"> </a>
         </div>
         <div class="collapse navbar-collapse header-collapse">
@@ -259,8 +257,6 @@ a.anchor-link {
   </div>
 
   <main style="padding: 5px; background-color: #f0f6f9" >
-    <div class="fb-share-button" style="position: absolute; margin-left: 1px; margin-top: 2px;" data-href=window.location.href data-layout="button_count" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
-    <button class="orange" onclick="myFunction()" style="margin-right: 3px; position: relative; left: 92%">JupyterLab</button>
     <div class="container" style="margin: 40px auto">
       <div class="row">
         <div class="col s12" id="col_s12" style="margin-bottom: 30px">
@@ -337,10 +333,6 @@ a.anchor-link {
       })();
     });
 
-    function myFunction(){
-      var url = window.location.pathname.replace("voila/render", "lab/tree")
-      window.open(url, "_self");
-    }
     </script>
 
     {% endblock footer_js %}
