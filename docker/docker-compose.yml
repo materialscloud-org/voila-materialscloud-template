@@ -1,0 +1,16 @@
+version: '3.7'
+
+services:
+  voila:
+    container_name: voila-materialscloud-template
+    image: voila-materialscloud-template
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    restart: always
+    volumes:
+      - ../share/jupyter/voila/templates:/root/.local/share/jupyter/voila/templates
+      - ../example-notebooks:/home/voila/example-notebooks
+    ports:
+      - 8866:8866
+    command: "pipenv run voila --template materialscloud example-notebooks"

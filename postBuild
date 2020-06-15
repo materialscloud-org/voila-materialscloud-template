@@ -2,4 +2,4 @@
 jupyter labextension install @jupyter-widgets/jupyterlab-manager
 jupyter nbextension      enable --py widgetsnbextension
 
-cp -r materialscloud /srv/conda/envs/notebook/share/jupyter/voila/templates/.
+pip install -i https://test.pypi.org/simple/ voila-materialscloud-template==0.0.1
