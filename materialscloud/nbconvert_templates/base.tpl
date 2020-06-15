@@ -6,7 +6,7 @@
 <head>
   {%- block html_head -%}
   <meta charset="utf-8" />
-  {% set nb_title = nb.metadata.get('title', '') or resources['metadata']['title'] %}
+  {% set nb_title = nb.metadata.get('title', '') or resources['metadata']['name'] %}
   <title>Voila: {{nb_title}}</title>
 
   <link rel="stylesheet" href="https://unpkg.com/font-awesome@4.5.0/css/font-awesome.min.css" type="text/css" />

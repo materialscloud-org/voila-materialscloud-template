@@ -5,6 +5,8 @@
 {% block notebook_execute %}
 {% endblock notebook_execute %}
 
+{% set nb_title = nb.metadata.get('title', '') or resources['metadata']['name'] %}
+
 {%- block html_head_css -%}
 <link href="{{resources.base_url}}voila/static/css/index.css" rel="stylesheet" type='text/css'>
 {% if resources.theme == 'dark' %}
@@ -229,7 +231,7 @@ a.anchor-link {
       <div class="collapse navbar-collapse header-collapse">
         <ul class="nav navbar-nav">
           <li><a href="https://www.materialscloud.org/learn">LEARN</a></li>
-          <li><a href="https://www.materialscloud.org/work">WORK</a></li>
+          <li class="active"><a ui-sref="main.work" href="https://www.materialscloud.org/work">WORK</a></li>
           <li><a href="https://www.materialscloud.org/discover">DISCOVER</a></li>
           <li><a href="https://www.materialscloud.org/explore">EXPLORE</a></li>
           <li><a href="https://www.materialscloud.org/archive">ARCHIVE</a></li>
@@ -247,6 +249,17 @@ a.anchor-link {
         <div class="jp-Notebook theme-dark">
           {% else %}
           <div class="jp-Notebook theme-light">
+            <ol class="breadcrumb ng-isolate-scope" ncy-breadcrumb="">
+              <li ng-repeat="step in steps" ng-class="{active: $last}" ng-switch="$last || !!step.abstract" class="ng-scope" style="">
+                <a ng-switch-when="false" href="https://www.materialscloud.org/work/" class="ng-binding ng-scope" style="">Work</a>
+              </li>
+              <li ng-repeat="step in steps" ng-class="{active: $last}" ng-switch="$last || !!step.abstract" class="ng-scope" style="">
+                <a ng-switch-when="false" href="https://www.materialscloud.org/work/tools" class="ng-binding ng-scope" style="">Tools</a>
+              </li>
+              <li ng-repeat="step in steps" ng-class="{active: $last}" ng-switch="$last || !!step.abstract" class="ng-scope active" style="">
+                <span ng-switch-when="true" class="ng-binding ng-scope">{{nb_title}}</span>
+              </li>
+            </ol>
             {% endif %}
             {%- block body_loop -%}
             {# from this point on, the kernel is started #}
