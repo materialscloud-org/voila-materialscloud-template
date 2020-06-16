@@ -16,7 +16,6 @@
 {% set bar_color = '#f3f700' %}
 <link href="{{resources.base_url}}voila/static/css/theme-light.css" rel="stylesheet" type='text/css'>
 {% endif %}
-<link href="{{resources.base_url}}voila/static/css/materialize.min.css" rel="stylesheet" type='text/css'>
 <link href="{{resources.base_url}}voila/static/css/mcloud_theme.min.css" rel="stylesheet" type='text/css'>
 
 <style type="text/css">
