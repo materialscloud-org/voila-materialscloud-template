@@ -7,12 +7,14 @@
   #kernel-status-icon {
     display: unset;
   }
+
   @font-face {
     font-family: 'Material Icons';
     font-style: normal;
     font-weight: 400;
     src: url("{{ resources.include_url("static/css/icons_font.ttf") }}") format('truetype');
   }
+
   .material-icons {
     font-family: 'Material Icons';
     font-weight: normal;
@@ -26,10 +28,12 @@
     word-wrap: normal;
     direction: ltr;
   }
+
   /* Workaround for the Select/Dropdown widgets to be visible: */
   select {
     display: block;
   }
+
   /* Workaround for the RadioButtons widgets to be visible: */
   [type="radio"]:not(:checked), [type="radio"]:checked {
     position: static;
@@ -47,9 +51,11 @@
     requirejs(['static/voila'], function(voila) {
       (async function() {
         var kernel = await voila.connectKernel();
+
         kernel.statusChanged.connect(() => {
           // console.log(kernel.status);
           var el = document.getElementById("kernel-status-icon");
+
           if (kernel.status == 'busy') {
             el.innerHTML = 'radio_button_checked';
           } else {

@@ -21,6 +21,11 @@ body {
   overflow-y: scroll;
 }
 
+/* Overwrite default value, workaround for not breaking materialize */
+.jp-Notebook {
+  padding: 0px;
+}
+
 .nav-wrapper {
   background-color: {{ bar_color }};
 }
@@ -179,7 +184,6 @@ button.red:active {
         {% else %}
         <div class="jp-Notebook theme-light">
         {% endif %}
-          {{ super() }}
           <ol class="breadcrumb ng-isolate-scope" ncy-breadcrumb="">
             <li ng-repeat="step in steps" ng-class="{active: $last}" ng-switch="$last || !!step.abstract" class="ng-scope" style="">
               <a ng-switch-when="false" href="https://www.materialscloud.org/work/" class="ng-binding ng-scope" style="">Work</a>
@@ -191,6 +195,7 @@ button.red:active {
               <span ng-switch-when="true" class="ng-binding ng-scope">{{nb_title}}</span>
             </li>
           </ol>
+          {{ super() }}
         </div>
 {%- endblock body_loop -%}
 
@@ -199,6 +204,8 @@ button.red:active {
       </div>
     </div>
   </main>
+  {{ super() }}
+  {{ resources.include_js("static/js/materialize.min.js") }}
 {%- endblock body_footer -%}
 
 {%- endblock body -%}
