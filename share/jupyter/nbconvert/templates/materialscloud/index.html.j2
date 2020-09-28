@@ -52,37 +52,38 @@ a.anchor-link {
 
 /* General Jupyter button styling */
 .jupyter-button {
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-top: 0px;
-  padding-bottom: 0px;
+  padding: 5px 10px;
   display: inline-block;
   white-space: nowrap;
   overflow: visible;
-  text-overflow: ellipsis;
   text-transform: none;
   text-align: center;
-  font-size: inherit;
+  vertical-align: middle;
+  touch-action: manipulation;
+  font-size: 14px;
+  font-weight: normal;
   cursor: pointer;
 
-  height: var(--jp-widgets-inline-height);
-  border: 1px solid #d8cece !important;
-  margin-right: 2px !important;
-  line-height: inherit;
+  margin-bottom: 0;
+  line-height: 1.5;
   box-shadow: none;
 
   color: inherit;
   font: inherit;
-  font-family: inherit;
-  margin: 0;
-  background-color: var(--jp-layout-color2);
-  border-color: var(--jp-border-color2);
-  border: none;
+  background-image: none;
+  border-radius: 1px;
+  /* border: 1px solid transparent; */
+  border: 1px solid #d8cece !important;
+  margin-right: 2px !important;
   user-select: none;
+  -webkit-appearance: button;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 .jupyter-button i.fa {
-  margin-right: var(--jp-widgets-inline-margin);
+  /* margin-right: var(--jp-widgets-inline-margin); */
   pointer-events: none;
 }
 
@@ -92,6 +93,14 @@ a.anchor-link {
 
 .jupyter-widgets.jupyter-button:disabled {
   cursor: default;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+a.jupyter-widgets.jupyter-button:disabled {
+  pointer-events: none;
 }
 
 .jupyter-button i.fa.center {
@@ -105,128 +114,246 @@ a.anchor-link {
 
 .jupyter-button:hover:enabled,
 .jupyter-button:focus:enabled {
-  /* MD Lite 2dp shadow */
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, var(--md-shadow-key-penumbra-opacity)),
-    0 3px 1px -2px rgba(0, 0, 0, var(--md-shadow-key-umbra-opacity)),
-    0 1px 5px 0 rgba(0, 0, 0, var(--md-shadow-ambient-shadow-opacity));
+  color: #839094;
+  text-decoration: none;
+  box-shadow: none !important;
 }
 
 .jupyter-button:active,
 .jupyter-button.mod-active {
-  /* MD Lite 4dp shadow */
-  box-shadow: 0 4px 5px 0 rgba(0, 0, 0, var(--md-shadow-key-penumbra-opacity)),
-    0 1px 10px 0 rgba(0, 0, 0, var(--md-shadow-ambient-shadow-opacity)),
-    0 2px 4px -1px rgba(0, 0, 0, var(--md-shadow-key-umbra-opacity));
-  color: var(--jp-ui-font-color1);
-  background-color: var(--jp-layout-color3);
+  outline: 0;
+  background-image: none;
+  /* -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); */
+  /* box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); */
+  box-shadow: none !important;
 }
 
 .jupyter-button:focus:enabled {
-  outline: 1px solid var(--jp-widgets-input-focus-border-color);
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+
+/* Button "Default" Styling */
+
+.jupyter-button.mod-default {
+  color: #000 !important;
+  background-color: #ecefed !important;
+  border-color: rgba(255, 255, 255, 0) !important;
+}
+
+.jupyter-button.mod-default.mod-focus, .jupyter-button.mod-default.focus, .jupyter-button.mod-default:focus {
+  color: #000 !important;
+  background-color: #d0d8d3 !important;
+  border-color: rgba(191, 191, 191, 0) !important;
+}
+
+.jupyter-button.mod-default:hover {
+  color: #000 !important;
+  background-color: #d0d8d3 !important;
+  border-color: rgba(224, 224, 224, 0) !important;
+}
+
+.jupyter-button.mod-default.mod-active, .jupyter-button.mod-default.active, .jupyter-button.mod-default:active {
+  color: #000 !important;
+  background-color: #d0d8d3 !important;
+  border-color: rgba(224, 224, 224, 0) !important;
+  background-image: none !important;
+}
+
+.jupyter-button.mod-default:active:hover, .jupyter-button.mod-default:active:focus, .jupyter-button.mod-default:active.focus, .jupyter-button.mod-default.active:hover, .jupyter-button.mod-default.active:focus, .jupyter-button.mod-default.active.focus {
+  color: #000 !important;
+  background-color: #bdc7c0 !important;
+  border-color: rgba(191, 191, 191, 0) !important;
+}
+.jupyter-button.mod-default.disabled:hover, .jupyter-button.mod-default.disabled:focus, .jupyter-button.mod-default.disabled.focus, .jupyter-button.mod-default[disabled]:hover, .jupyter-button.mod-default[disabled]:focus, .jupyter-button.mod-default[disabled].focus {
+  background-color: #ecefed !important;
+  border-color: rgba(255, 255, 255, 0) !important;
 }
 
 /* Button "Primary" Styling */
 
 .jupyter-button.mod-primary {
-  color: var(--jp-ui-inverse-font-color1);
-  background-color: var(--jp-brand-color1);
+  color: #fff !important;
+  background-color: #3560A0 !important;
+  border-color: rgba(255, 255, 255, 0) !important;
 }
 
-.jupyter-button.mod-primary.mod-active {
-  color: var(--jp-ui-inverse-font-color0);
-  background-color: var(--jp-brand-color0);
+.jupyter-button.mod-primary.mod-focus, .jupyter-button.mod-primary.focus, .jupyter-button.mod-primary:focus {
+  color: #fff !important;
+  background-color: #28497a !important;
+  border-color: rgba(191, 191, 191, 0) !important;
 }
 
-.jupyter-button.mod-primary:active {
-  color: var(--jp-ui-inverse-font-color0);
-  background-color: var(--jp-brand-color0);
+.jupyter-button.mod-primary:hover {
+  color: #fff !important;
+  background-color: #28497a !important;
+  border-color: rgba(224, 224, 224, 0) !important;
 }
 
-/* Normal white Button as seen on Google.com*/
-/*button {
-  color: #444444;
-  background: #F3F3F3;
-  border: 1px #DADADA solid;
-  padding: 5px 10px;
-  border-radius: 2px;
-  font-weight: bold;
-  font-size: 9pt;
-  outline: none;
+.jupyter-button.mod-primary.mod-active, .jupyter-button.mod-primary.active, .jupyter-button.mod-primary:active {
+  color: #fff !important;
+  background-color: #28497a !important;
+  border-color: rgba(224, 224, 224, 0) !important;
+  background-image: none !important;
 }
 
-button:hover {
-  border: 1px #C6C6C6 solid;
-  box-shadow: 1px 1px 1px #EAEAEA;
-  color: #333333;
-  background: #F7F7F7;
+.jupyter-button.mod-primary:active:hover, .jupyter-button.mod-primary:active:focus, .jupyter-button.mod-primary:active.focus, .jupyter-button.mod-primary.active:hover, .jupyter-button.mod-primary.active:focus, .jupyter-button.mod-primary.active.focus {
+  color: #fff !important;
+  background-color: #1f395f !important;
+  border-color: rgba(191, 191, 191, 0) !important;
+}
+.jupyter-button.mod-primary.disabled:hover, .jupyter-button.mod-primary.disabled:focus, .jupyter-button.mod-primary.disabled.focus, .jupyter-button.mod-primary[disabled]:hover, .jupyter-button.mod-primary[disabled]:focus, .jupyter-button.mod-primary[disabled].focus {
+  background-color: #3560A0 !important;
+  border-color: rgba(255, 255, 255, 0) !important;
 }
 
-button:active {
-  box-shadow: inset 1px 1px 1px #DFDFDF;
-}*/
+/* Button "Success" Styling */
 
-/* Blue button as seen on translate.google.com*/
-/*button.blue {
-  color: white;
-  background: #4C8FFB;
-  border: 1px #3079ED solid;
-  box-shadow: inset 0 1px 0 #80B0FB;
+.jupyter-button.mod-success {
+  color: #fff !important;
+  background-color: #82c833 !important;
+  border-color: rgba(255, 255, 255, 0) !important;
 }
 
-button.blue:hover {
-  border: 1px #2F5BB7 solid;
-  box-shadow: 0 1px 1px #EAEAEA, inset 0 1px 0 #5A94F1;
-  background: #3F83F1;
+.jupyter-button.mod-success.mod-focus, .jupyter-button.mod-success.focus, .jupyter-button.mod-success:focus {
+  color: #fff !important;
+  background-color: #689f29 !important;
+  border-color: rgba(191, 191, 191, 0) !important;
 }
 
-button.blue:active {
-  box-shadow: inset 0 2px 5px #2370FE;
-}*/
-
-/* Orange button as seen on blogger.com*/
-/*button.orange {
-  color: white;
-  border: 1px solid #FB8F3D;
-  background: -webkit-linear-gradient(top, #FDA251, #FB8F3D);
-  background: -moz-linear-gradient(top, #FDA251, #FB8F3D);
-  background: -ms-linear-gradient(top, #FDA251, #FB8F3D);
+.jupyter-button.mod-success:hover {
+  color: #fff !important;
+  background-color: #689f29 !important;
+  border-color: rgba(224, 224, 224, 0) !important;
 }
 
-button.orange:hover {
-  border: 1px solid #EB5200;
-  background: -webkit-linear-gradient(top, #FD924C, #F9760B);
-  background: -moz-linear-gradient(top, #FD924C, #F9760B);
-  background: -ms-linear-gradient(top, #FD924C, #F9760B);
-  box-shadow: 0 1px #EFEFEF;
+.jupyter-button.mod-success.mod-active, .jupyter-button.mod-success.active, .jupyter-button.mod-success:active {
+  color: #fff !important;
+  background-color: #689f29 !important;
+  border-color: rgba(224, 224, 224, 0) !important;
+  background-image: none !important;
 }
 
-button.orange:active {
-  box-shadow: inset 0 1px 1px rgba(0,0,0,0.3);
-}*/
-
-/* Red Google Button as seen on drive.google.com */
-/*button.red {
-  background: -webkit-linear-gradient(top, #DD4B39, #D14836);
-  background: -moz-linear-gradient(top, #DD4B39, #D14836);
-  background: -ms-linear-gradient(top, #DD4B39, #D14836);
-  border: 1px solid #DD4B39;
-  color: white;
-  text-shadow: 0 1px 0 #C04131;
+.jupyter-button.mod-success:active:hover, .jupyter-button.mod-success:active:focus, .jupyter-button.mod-success:active.focus, .jupyter-button.mod-success.active:hover, .jupyter-button.mod-success.active:focus, .jupyter-button.mod-success.active.focus {
+  color: #fff !important;
+  background-color: #558321 !important;
+  border-color: rgba(191, 191, 191, 0) !important;
+}
+.jupyter-button.mod-success.disabled:hover, .jupyter-button.mod-success.disabled:focus, .jupyter-button.mod-success.disabled.focus, .jupyter-button.mod-success[disabled]:hover, .jupyter-button.mod-success[disabled]:focus, .jupyter-button.mod-success[disabled].focus {
+  background-color: #82c833 !important;
+  border-color: rgba(255, 255, 255, 0) !important;
 }
 
-button.red:hover {
-  background: -webkit-linear-gradient(top, #DD4B39, #C53727);
-  background: -moz-linear-gradient(top, #DD4B39, #C53727);
-  background: -ms-linear-gradient(top, #DD4B39, #C53727);
-  border: 1px solid #AF301F;
+/* Button "Info" Styling */
+
+.jupyter-button.mod-info {
+  color: #fff !important;
+  background-color: #308cbc !important;
+  border-color: rgba(255, 255, 255, 0) !important;
 }
 
-button.red:active {
-  box-shadow: inset 0 1px 1px rgba(0,0,0,0.2);
-  background: -webkit-linear-gradient(top, #D74736, #AD2719);
-  background: -moz-linear-gradient(top, #D74736, #AD2719);
-  background: -ms-linear-gradient(top, #D74736, #AD2719);
-}*/
+.jupyter-button.mod-info.mod-focus, .jupyter-button.mod-info.focus, .jupyter-button.mod-info:focus {
+  color: #fff !important;
+  background-color: #266e93 !important;
+  border-color: rgba(191, 191, 191, 0) !important;
+}
+
+.jupyter-button.mod-info:hover {
+  color: #fff !important;
+  background-color: #266e93 !important;
+  border-color: rgba(224, 224, 224, 0) !important;
+}
+
+.jupyter-button.mod-info.mod-active, .jupyter-button.mod-info.active, .jupyter-button.mod-info:active {
+  color: #fff !important;
+  background-color: #266e93 !important;
+  border-color: rgba(224, 224, 224, 0) !important;
+  background-image: none !important;
+}
+
+.jupyter-button.mod-info:active:hover, .jupyter-button.mod-info:active:focus, .jupyter-button.mod-info:active.focus, .jupyter-button.mod-info.active:hover, .jupyter-button.mod-info.active:focus, .jupyter-button.mod-info.active.focus {
+  color: #fff !important;
+  background-color: #1e5977 !important;
+  border-color: rgba(191, 191, 191, 0) !important;
+}
+.jupyter-button.mod-info.disabled:hover, .jupyter-button.mod-info.disabled:focus, .jupyter-button.mod-info.disabled.focus, .jupyter-button.mod-info[disabled]:hover, .jupyter-button.mod-info[disabled]:focus, .jupyter-button.mod-info[disabled].focus {
+  background-color: #308cbc !important;
+  border-color: rgba(255, 255, 255, 0) !important;
+}
+
+/* Button "Warning" Styling */
+
+.jupyter-button.mod-warning {
+  color: #fff !important;
+  background-color: #dd8338 !important;
+  border-color: rgba(255, 255, 255, 0) !important;
+}
+
+.jupyter-button.mod-warning.mod-focus, .jupyter-button.mod-warning.focus, .jupyter-button.mod-warning:focus {
+  color: #fff !important;
+  background-color: #c16a21 !important;
+  border-color: rgba(191, 191, 191, 0) !important;
+}
+
+.jupyter-button.mod-warning:hover {
+  color: #fff !important;
+  background-color: #c16a21 !important;
+  border-color: rgba(224, 224, 224, 0) !important;
+}
+
+.jupyter-button.mod-warning.mod-active, .jupyter-button.mod-warning.active, .jupyter-button.mod-warning:active {
+  color: #fff !important;
+  background-color: #c16a21 !important;
+  border-color: rgba(224, 224, 224, 0) !important;
+  background-image: none !important;
+}
+
+.jupyter-button.mod-warning:active:hover, .jupyter-button.mod-warning:active:focus, .jupyter-button.mod-warning:active.focus, .jupyter-button.mod-warning.active:hover, .jupyter-button.mod-warning.active:focus, .jupyter-button.mod-warning.active.focus {
+  color: #fff !important;
+  background-color: #a3591c !important;
+  border-color: rgba(191, 191, 191, 0) !important;
+}
+.jupyter-button.mod-warning.disabled:hover, .jupyter-button.mod-warning.disabled:focus, .jupyter-button.mod-warning.disabled.focus, .jupyter-button.mod-warning[disabled]:hover, .jupyter-button.mod-warning[disabled]:focus, .jupyter-button.mod-warning[disabled].focus {
+  background-color: #dd8338 !important;
+  border-color: rgba(255, 255, 255, 0) !important;
+}
+
+/* Button "Danger" Styling */
+
+.jupyter-button.mod-danger {
+  color: #fff !important;
+  background-color: #C64537 !important;
+  border-color: rgba(255, 255, 255, 0) !important;
+}
+
+.jupyter-button.mod-danger.mod-focus, .jupyter-button.mod-danger.focus, .jupyter-button.mod-danger:focus {
+  color: #fff !important;
+  background-color: #9e372c !important;
+  border-color: rgba(191, 191, 191, 0) !important;
+}
+
+.jupyter-button.mod-danger:hover {
+  color: #fff !important;
+  background-color: #9e372c !important;
+  border-color: rgba(224, 224, 224, 0) !important;
+}
+
+.jupyter-button.mod-danger.mod-active, .jupyter-button.mod-danger.active, .jupyter-button.mod-danger:active {
+  color: #fff !important;
+  background-color: #9e372c !important;
+  border-color: rgba(224, 224, 224, 0) !important;
+  background-image: none !important;
+}
+
+.jupyter-button.mod-danger:active:hover, .jupyter-button.mod-danger:active:focus, .jupyter-button.mod-danger:active.focus, .jupyter-button.mod-danger.active:hover, .jupyter-button.mod-danger.active:focus, .jupyter-button.mod-danger.active.focus {
+  color: #fff !important;
+  background-color: #822d24 !important;
+  border-color: rgba(191, 191, 191, 0) !important;
+}
+.jupyter-button.mod-danger.disabled:hover, .jupyter-button.mod-danger.disabled:focus, .jupyter-button.mod-danger.disabled.focus, .jupyter-button.mod-danger[disabled]:hover, .jupyter-button.mod-danger[disabled]:focus, .jupyter-button.mod-danger[disabled].focus {
+  background-color: #C64537 !important;
+  border-color: rgba(255, 255, 255, 0) !important;
+}
 </style>
 
 {%- endblock html_head_css -%}
