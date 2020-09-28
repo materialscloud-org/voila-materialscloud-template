@@ -8,12 +8,10 @@ for root, dirs, files in os.walk('share'):
 
 setup_args = {
     'name': 'voila-materialscloud-template',
-    'version': '0.0.2',
+    'version': '0.1.0',
     'packages': [],
     'data_files': data_files,
-    'install_requires': [
-        'voila>=0.1.6,<0.2'
-    ],
+    'install_requires': ['voila~=0.2.3'],
     'author': 'Dou Du',
     'url': 'https://github.com/materialscloud-org/materialscloud-voila-template'
 }
