@@ -50,6 +50,98 @@ a.anchor-link {
   display: none;
 }
 
+/* General Jupyter button styling */
+.jupyter-button {
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: visible;
+  text-overflow: ellipsis;
+  text-transform: none;
+  text-align: center;
+  font-size: inherit;
+  cursor: pointer;
+
+  height: var(--jp-widgets-inline-height);
+  border: 1px solid #d8cece !important;
+  margin-right: 2px !important;
+  line-height: inherit;
+  box-shadow: none;
+
+  color: inherit;
+  font: inherit;
+  font-family: inherit;
+  margin: 0;
+  background-color: var(--jp-layout-color2);
+  border-color: var(--jp-border-color2);
+  border: none;
+  user-select: none;
+}
+
+.jupyter-button i.fa {
+  margin-right: var(--jp-widgets-inline-margin);
+  pointer-events: none;
+}
+
+.jupyter-button:empty:before {
+  content: '\200b'; /* zero-width space */
+}
+
+.jupyter-widgets.jupyter-button:disabled {
+  cursor: default;
+}
+
+.jupyter-button i.fa.center {
+  margin-right: 0;
+}
+
+.jupyter-button::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+.jupyter-button:hover:enabled,
+.jupyter-button:focus:enabled {
+  /* MD Lite 2dp shadow */
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, var(--md-shadow-key-penumbra-opacity)),
+    0 3px 1px -2px rgba(0, 0, 0, var(--md-shadow-key-umbra-opacity)),
+    0 1px 5px 0 rgba(0, 0, 0, var(--md-shadow-ambient-shadow-opacity));
+}
+
+.jupyter-button:active,
+.jupyter-button.mod-active {
+  /* MD Lite 4dp shadow */
+  box-shadow: 0 4px 5px 0 rgba(0, 0, 0, var(--md-shadow-key-penumbra-opacity)),
+    0 1px 10px 0 rgba(0, 0, 0, var(--md-shadow-ambient-shadow-opacity)),
+    0 2px 4px -1px rgba(0, 0, 0, var(--md-shadow-key-umbra-opacity));
+  color: var(--jp-ui-font-color1);
+  background-color: var(--jp-layout-color3);
+}
+
+.jupyter-button:focus:enabled {
+  outline: 1px solid var(--jp-widgets-input-focus-border-color);
+}
+
+/* Button "Primary" Styling */
+
+.jupyter-button.mod-primary {
+  color: var(--jp-ui-inverse-font-color1);
+  background-color: var(--jp-brand-color1);
+}
+
+.jupyter-button.mod-primary.mod-active {
+  color: var(--jp-ui-inverse-font-color0);
+  background-color: var(--jp-brand-color0);
+}
+
+.jupyter-button.mod-primary:active {
+  color: var(--jp-ui-inverse-font-color0);
+  background-color: var(--jp-brand-color0);
+}
+
 /* Normal white Button as seen on Google.com*/
 /*button {
   color: #444444;
