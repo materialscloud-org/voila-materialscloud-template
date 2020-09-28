@@ -1,0 +1,211 @@
+{%- extends 'lab/index.html.j2' -%}
+
+{# this overrides the default behavior of directly starting the kernel and executing the notebook #}
+{% block notebook_execute %}
+{% endblock notebook_execute %}
+
+{% set nb_title = nb.metadata.get('title', '') or resources['metadata']['name'] %}
+
+{%- block html_head_css -%}
+{{ super() }}
+{% if resources.theme == 'dark' %}
+{% set bar_color = '#555454' %}
+{% else %}
+{% set bar_color = '#f3f700' %}
+{% endif %}
+{{ resources.include_css("static/css/mcloud_theme.min.css") }}
+
+<style type="text/css">
+body {
+  background-color: var(--jp-layout-color0);
+  overflow-y: scroll;
+}
+
+/* Overwrite default value, workaround for not breaking materialize */
+.jp-Notebook {
+  padding: 0px;
+}
+
+.nav-wrapper {
+  background-color: {{ bar_color }};
+}
+
+.brand-logo {
+  height: 90%;
+  width: 100%;
+}
+
+.voila-spinner-color1{
+  fill: {{ bar_color }};
+}
+
+a.anchor-link {
+  display: none;
+}
+.highlight  {
+  margin: 0.4em;
+}
+/* we keep the DOM for nbconvert the same as for voila, but hide the status icon */
+#kernel-status-icon {
+  display: none;
+}
+
+/* Normal white Button as seen on Google.com*/
+button {
+  color: #444444;
+  background: #F3F3F3;
+  border: 1px #DADADA solid;
+  padding: 5px 10px;
+  border-radius: 2px;
+  font-weight: bold;
+  font-size: 9pt;
+  outline: none;
+}
+
+button:hover {
+  border: 1px #C6C6C6 solid;
+  box-shadow: 1px 1px 1px #EAEAEA;
+  color: #333333;
+  background: #F7F7F7;
+}
+
+button:active {
+  box-shadow: inset 1px 1px 1px #DFDFDF;
+}
+
+/* Blue button as seen on translate.google.com*/
+button.blue {
+  color: white;
+  background: #4C8FFB;
+  border: 1px #3079ED solid;
+  box-shadow: inset 0 1px 0 #80B0FB;
+}
+
+button.blue:hover {
+  border: 1px #2F5BB7 solid;
+  box-shadow: 0 1px 1px #EAEAEA, inset 0 1px 0 #5A94F1;
+  background: #3F83F1;
+}
+
+button.blue:active {
+  box-shadow: inset 0 2px 5px #2370FE;
+}
+
+/* Orange button as seen on blogger.com*/
+button.orange {
+  color: white;
+  border: 1px solid #FB8F3D;
+  background: -webkit-linear-gradient(top, #FDA251, #FB8F3D);
+  background: -moz-linear-gradient(top, #FDA251, #FB8F3D);
+  background: -ms-linear-gradient(top, #FDA251, #FB8F3D);
+}
+
+button.orange:hover {
+  border: 1px solid #EB5200;
+  background: -webkit-linear-gradient(top, #FD924C, #F9760B);
+  background: -moz-linear-gradient(top, #FD924C, #F9760B);
+  background: -ms-linear-gradient(top, #FD924C, #F9760B);
+  box-shadow: 0 1px #EFEFEF;
+}
+
+button.orange:active {
+  box-shadow: inset 0 1px 1px rgba(0,0,0,0.3);
+}
+
+/* Red Google Button as seen on drive.google.com */
+button.red {
+  background: -webkit-linear-gradient(top, #DD4B39, #D14836);
+  background: -moz-linear-gradient(top, #DD4B39, #D14836);
+  background: -ms-linear-gradient(top, #DD4B39, #D14836);
+  border: 1px solid #DD4B39;
+  color: white;
+  text-shadow: 0 1px 0 #C04131;
+}
+
+button.red:hover {
+  background: -webkit-linear-gradient(top, #DD4B39, #C53727);
+  background: -moz-linear-gradient(top, #DD4B39, #C53727);
+  background: -ms-linear-gradient(top, #DD4B39, #C53727);
+  border: 1px solid #AF301F;
+}
+
+button.red:active {
+  box-shadow: inset 0 1px 1px rgba(0,0,0,0.2);
+  background: -webkit-linear-gradient(top, #D74736, #AD2719);
+  background: -moz-linear-gradient(top, #D74736, #AD2719);
+  background: -ms-linear-gradient(top, #D74736, #AD2719);
+}
+</style>
+
+{%- endblock html_head_css -%}
+
+{%- block body -%}
+{%- block body_header -%}
+  {{ super() }}
+  <header>
+    <div class="mcloud-header header" id="mcloudHeader">
+      <div class="navbar navbar-default navbar-static-top">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button class="navbar-toggle" data-target=".header-collapse"
+            data-toggle="collapse" type="button">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="https://www.materialscloud.org/home">
+            <img src="{{ resources.base_url }}voila/static/images/mcloud_logo.png">
+          </a>
+        </div>
+
+        <div class="collapse navbar-collapse header-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="https://www.materialscloud.org/learn">LEARN</a></li>
+            <li class="active"><a ui-sref="main.work" href="https://www.materialscloud.org/work">WORK</a></li>
+            <li><a href="https://www.materialscloud.org/discover">DISCOVER</a></li>
+            <li><a href="https://www.materialscloud.org/explore">EXPLORE</a></li>
+            <li><a href="https://www.materialscloud.org/archive">ARCHIVE</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main style="padding: 5px; background-color: #f0f6f9" >
+    <div class="container" style="margin: 40px auto">
+      <div class="row">
+        <div class="col s12" id="col_s12" style="margin-bottom: 30px">
+{%- endblock body_header -%}
+
+{%- block body_loop -%}
+        {% if resources.theme == 'dark' %}
+        <div class="jp-Notebook theme-dark">
+        {% else %}
+        <div class="jp-Notebook theme-light">
+        {% endif %}
+          <ol class="breadcrumb ng-isolate-scope" ncy-breadcrumb="">
+            <li ng-repeat="step in steps" ng-class="{active: $last}" ng-switch="$last || !!step.abstract" class="ng-scope" style="">
+              <a ng-switch-when="false" href="https://www.materialscloud.org/work/" class="ng-binding ng-scope" style="">Work</a>
+            </li>
+            <li ng-repeat="step in steps" ng-class="{active: $last}" ng-switch="$last || !!step.abstract" class="ng-scope" style="">
+              <a ng-switch-when="false" href="https://www.materialscloud.org/work/tools" class="ng-binding ng-scope" style="">Tools</a>
+            </li>
+            <li ng-repeat="step in steps" ng-class="{active: $last}" ng-switch="$last || !!step.abstract" class="ng-scope active" style="">
+              <span ng-switch-when="true" class="ng-binding ng-scope">{{nb_title}}</span>
+            </li>
+          </ol>
+          {{ super() }}
+        </div>
+{%- endblock body_loop -%}
+
+{%- block body_footer -%}
+        </div>
+      </div>
+    </div>
+  </main>
+  {{ super() }}
+  {{ resources.include_js("static/js/materialize.min.js") }}
+{%- endblock body_footer -%}
+
+{%- endblock body -%}
