@@ -12,7 +12,7 @@ setup_args = {
     'packages': [],
     'data_files': data_files,
     'install_requires': ['voila~=0.2.3'],
-    'author': 'Dou Du',
+    'author': 'Dou Du and Casper Welzel Andersen',
     'url': 'https://github.com/materialscloud-org/materialscloud-voila-template'
 }
 
