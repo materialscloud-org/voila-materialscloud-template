@@ -1,5 +1,0 @@
-#!/bin/bash
-jupyter labextension install @jupyter-widgets/jupyterlab-manager
-jupyter nbextension      enable --py widgetsnbextension
-
-pip install -i https://test.pypi.org/simple/ voila-materialscloud-template==0.0.1
