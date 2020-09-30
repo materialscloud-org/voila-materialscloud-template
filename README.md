@@ -1,6 +1,11 @@
-# Voila Template for the Materials Cloud  
+# Voilà template for Materials Cloud  
 
-This is Voila template for the Materials Cloud project.
+This is the Voilà template for the Materials Cloud project.
+
+It implements the standard Materials Cloud header and CSS.
+
+The template is called `materialscloud` and can be invoked either by using the `--template=materialscloud` `voila` CLI option, setting it explicitly in a Notebook's metadata or in a Jupyter config file.
+See [the Voilà documentation](https://voila.readthedocs.io/en/stable/customize.html#controlling-the-nbconvert-template) on how to invoke templates for more information.
 
 ## Try it with Binder!
 
@@ -8,8 +13,8 @@ This is Voila template for the Materials Cloud project.
 
 ## Installation
 
-```python
-pip install -i https://test.pypi.org/simple/ voila-materialscloud-template==0.0.1
+```bash
+pip install voila-materialscloud-template
 ```
 
 ## Usage
@@ -17,3 +22,7 @@ pip install -i https://test.pypi.org/simple/ voila-materialscloud-template==0.0.
 ```bash
 voila --template=materialscloud example.ipynb
 ```
+
+## License
+
+This repository and all files in it are licensed under the [BSD license](LICENSE), copyright (c) by Voilà contributors.
