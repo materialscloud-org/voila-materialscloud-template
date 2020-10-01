@@ -30,7 +30,7 @@ class ExtraDevelop(develop):
 
 setup(
     name='voila-materialscloud-template',
-    version='0.2.0',
+    version='0.2.3',
     packages=[],
     author='Dou Du and Casper Welzel Andersen',
     author_email='dou.du@epfl.ch',
