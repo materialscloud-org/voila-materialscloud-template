@@ -5,7 +5,7 @@ updates:
   schedule:
     interval: weekly
   target-branch: develop
-  label:
+  labels:
   - dependencies
 - package-ecosystem: docker
   directory: "/docker"
