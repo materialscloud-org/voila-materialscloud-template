@@ -7,10 +7,3 @@ updates:
   target-branch: develop
   labels:
   - dependencies
-- package-ecosystem: docker
-  directory: "/docker"
-  schedule:
-      interval: daily
-  target-branch: develop
-  labels:
-  - docker_dependencies
