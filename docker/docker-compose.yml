@@ -10,7 +10,8 @@ services:
     restart: always
     volumes:
       - ../share/jupyter/voila/templates:/root/.local/share/jupyter/voila/templates
+      - ../share/jupyter/nbconvert/templates:/root/.local/share/jupyter/nbconvert/templates
       - ../example-notebooks:/home/voila/example-notebooks
     ports:
       - 8866:8866
-    command: "pipenv run voila --template materialscloud example-notebooks"
+    command: "voila --template=materialscloud --enable_nbextensions=True example-notebooks"
