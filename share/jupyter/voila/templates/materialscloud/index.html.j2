@@ -54,13 +54,6 @@
 
         kernel.statusChanged.connect(() => {
           // console.log(kernel.status);
-          var el = document.getElementById("kernel-status-icon");
-
-          if (kernel.status == 'busy') {
-            el.innerHTML = 'radio_button_checked';
-          } else {
-            el.innerHTML = 'radio_button_unchecked';
-          }
         });
       })();
     });
