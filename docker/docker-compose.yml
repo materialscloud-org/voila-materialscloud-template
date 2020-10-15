@@ -1,4 +1,4 @@
-version: '3.7'
+version: '3'
 
 services:
   voila:
@@ -14,4 +14,4 @@ services:
       - ../example-notebooks:/home/voila/example-notebooks
     ports:
       - 8866:8866
-    command: "voila --template=materialscloud --enable_nbextensions=True example-notebooks"
+    command: "voila --template=${TEMPLATE} --enable_nbextensions=True example-notebooks"
