@@ -46,8 +46,8 @@ def get_voila_templates_dir() -> Tuple[Path, Path]:
 
 def copy_template(name: str):
     """Copy a Voilà template to Jupyter's first (and best) data dir"""
-    src_voila = Path(__file__).parent.joinpath('share/jupyter/voila/templates/materialscloud').resolve()
-    src_nbconvert = Path(__file__).parent.joinpath('share/jupyter/nbconvert/templates/materialscloud').resolve()
+    src_voila = Path(__file__).parent.joinpath(f'share/jupyter/voila/templates/{name}').resolve()
+    src_nbconvert = Path(__file__).parent.joinpath(f'share/jupyter/nbconvert/templates/{name}').resolve()
 
     for src in (src_voila, src_nbconvert):
         if not src.exists():
