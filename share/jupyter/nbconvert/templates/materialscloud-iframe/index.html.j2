@@ -385,6 +385,11 @@ a.jupyter-widgets.jupyter-button:disabled {
 {%- block body_footer -%}
   </div>
   {{ super() }}
+  <div>
+    <p style="text-align: center;">
+      Hosted on <a href="https://materialscloud.org" target="_blank">Materials Cloud</a>.
+    </p>
+  </div>
   {{ resources.include_js("static/js/materialize.min.js") }}
   <div style="position: relative" data-iframe-height></div>
 {%- endblock body_footer -%}
