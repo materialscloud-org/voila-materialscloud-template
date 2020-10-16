@@ -14,4 +14,5 @@ services:
       - ../example-notebooks:/home/voila/example-notebooks
     ports:
       - 8866:8866
-    command: "voila --template=${TEMPLATE} --enable_nbextensions=True example-notebooks"
+    environment:
+      TEMPLATE: ${TEMPLATE}
