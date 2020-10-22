@@ -23,7 +23,7 @@ body {
   overflow-y: scroll;
 }
 
-/* Overwrite default value, workaround for not breaking materialize */
+/* Overwrite default value, workaround (from materialize) */
 .jp-Notebook {
   padding: 0px;
 }
@@ -439,5 +439,4 @@ a.jupyter-widgets.jupyter-button:disabled {
     </div>
   </main>
   {{ super() }}
-  {{ resources.include_js("static/js/materialize.min.js") }}
 {%- endblock body_footer -%}
