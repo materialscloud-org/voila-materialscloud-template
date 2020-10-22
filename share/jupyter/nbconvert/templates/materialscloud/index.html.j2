@@ -17,6 +17,8 @@
 
 <link rel="shortcut icon" href="{{ resources.include_url('static/images/favicon.png') }}" type="image/svg"/>
 
+<meta name="viewport" content="width=devide-width, initial-scale=1">
+
 <style type="text/css">
 body {
   background-color: var(--jp-layout-color0);
@@ -406,37 +408,43 @@ a.jupyter-widgets.jupyter-button:disabled {
     </div>
   </header>
 
-  <main style="padding: 5px; background-color: #f0f6f9" >
-    <div class="container" style="margin: 40px auto">
-      <div class="row">
-        <div class="col s12" id="col_s12" style="margin-bottom: 30px">
+  <div class="mcloud-wrapper">
+    <div class="mcloud-status-bar ng-scope" data-ng-controller="MessageCtrl">
+      <div id="mcloud-alert" ng-class="message_type" class="alert ng-binding-alert-info"></div>
+    </div>
+    <div class="mcloud-message-container"> </div>
+    <div class="mcloud-container">
+      <div class="mcloud-page-container ng-scope">
+        <div class="mcloud-page-content panel panel-default">
+          <ol class="breadcrumb ng-isolate-scope" ncy-breadcrumb="">
+            <li ng-repeat="step in steps" ng-class="{active: $last}" ng-switch="$last || !!step.abstract" class="ng-scope">
+              <a ng-switch-when="false" href="https://www.materialscloud.org/work/" class="ng-binding ng-scope">Work</a>
+            </li>
+            <li ng-repeat="step in steps" ng-class="{active: $last}" ng-switch="$last || !!step.abstract" class="ng-scope">
+              <a ng-switch-when="false" href="https://www.materialscloud.org/work/tools" class="ng-binding ng-scope">Tools</a>
+            </li>
+            <li ng-repeat="step in steps" ng-class="{active: $last}" ng-switch="$last || !!step.abstract" class="ng-scope active">
+              <span ng-switch-when="true" class="ng-binding ng-scope">{{nb_title}}</span>
+            </li>
+          </ol>
+          <div id="container" class="container" style="margin: auto; max-width: 800px;">
 {%- endblock body_header -%}
 
 {%- block body_loop -%}
-          {% if resources.theme == 'dark' %}
-          <div class="jp-Notebook theme-dark">
-          {% else %}
-          <div class="jp-Notebook theme-light">
-          {% endif %}
-            <ol class="breadcrumb ng-isolate-scope" ncy-breadcrumb="">
-              <li ng-repeat="step in steps" ng-class="{active: $last}" ng-switch="$last || !!step.abstract" class="ng-scope" style="">
-                <a ng-switch-when="false" href="https://www.materialscloud.org/work/" class="ng-binding ng-scope" style="">Work</a>
-              </li>
-              <li ng-repeat="step in steps" ng-class="{active: $last}" ng-switch="$last || !!step.abstract" class="ng-scope" style="">
-                <a ng-switch-when="false" href="https://www.materialscloud.org/work/tools" class="ng-binding ng-scope" style="">Tools</a>
-              </li>
-              <li ng-repeat="step in steps" ng-class="{active: $last}" ng-switch="$last || !!step.abstract" class="ng-scope active" style="">
-                <span ng-switch-when="true" class="ng-binding ng-scope">{{nb_title}}</span>
-              </li>
-            </ol>
-            {{ super() }}
-          </div>
+            {% if resources.theme == 'dark' %}
+            <div class="jp-Notebook theme-dark">
+            {% else %}
+            <div class="jp-Notebook theme-light">
+            {% endif %}
+              {{ super() }}
+            </div>
 {%- endblock body_loop -%}
 
 {%- block body_footer -%}
+          </div>
         </div>
       </div>
     </div>
-  </main>
+  </div>
   {{ super() }}
 {%- endblock body_footer -%}
