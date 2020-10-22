@@ -1,8 +1,6 @@
-{% macro spinner_mcloud() -%}
+{% macro spinner() -%}
   <div class="loading">
-    <div class="spinner-container">
-        <img style="width: 150px; text-align: center;" src="{{ base_url }}voila/static/images/mcloud_spinner.svg"></img> 
-    </div>
+      <img style="width: 150px; text-align: center;" src="{{ base_url }}voila/static/images/mcloud_spinner.svg"/>
     {{ caller() }}
   </div>
 {%- endmacro %}
