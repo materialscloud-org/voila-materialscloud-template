@@ -30,7 +30,7 @@ voila:
 	@echo "  \"Voila\": {" >> ${VOILA}
 	@echo "    \"tornado_settings\": {" >> ${VOILA}
 	@echo "      \"headers\": {" >> ${VOILA}
-	@echo "        \"Content-Security-Policy\": \"frame-ancestors '*'; report-uri /api/security/csp-report\"" >> ${VOILA}
+	@echo "        \"Content-Security-Policy\": \"frame-ancestors *; report-uri /api/security/csp-report\"" >> ${VOILA}
 	@echo "      }" >> ${VOILA}
 	@echo "    }" >> ${VOILA}
 	@echo "  }" >> ${VOILA}
