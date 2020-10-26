@@ -7,8 +7,9 @@ from setuptools.command.install import install
 
 
 def post_install():
-    """Copy materialscloud template files to Jupyter config location"""
-    check_call('./copy_voila_template.py materialscloud'.split(), cwd=Path(__file__).parent.resolve())
+    """Copy materialscloud templates' files to Jupyter config location"""
+    for template in ("materialscloud", "materialscloud-iframe"):
+        check_call(['./copy_voila_template.py', template], cwd=Path(__file__).parent.resolve())
 
 class ExtraInstall(install):
     """Post-installation for installation (install) mode."""

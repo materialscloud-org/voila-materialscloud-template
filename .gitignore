@@ -1,3 +1,5 @@
 .*.ipynb
 .*.swp
 .ipynb_checkpoints/
+
+example-notebooks/*.json

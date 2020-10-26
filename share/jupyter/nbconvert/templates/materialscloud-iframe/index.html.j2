@@ -37,6 +37,10 @@ body {
   width: 100%;
 }
 
+a {
+  target: "_blank";
+}
+
 a.anchor-link {
   display: none;
 }
@@ -354,72 +358,33 @@ a.jupyter-widgets.jupyter-button:disabled {
 }
 </style>
 
+{{ resources.include_js("static/js/iframeResizer.contentWindow.min.js") }}
+
 {%- endblock html_head_css -%}
 
 {%- block body_header -%}
   {{ super() }}
-  <header>
-    <div class="mcloud-header header" id="mcloudHeader">
-      <div class="navbar navbar-default navbar-static-top">
-        <div class="container-fluid">
-          <div class="navbar-header">
-            <button class="navbar-toggle" data-target=".header-collapse"
-            data-toggle="collapse" type="button">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="https://www.materialscloud.org/home">
-            <img src="{{ resources.base_url }}voila/static/images/mcloud_logo.png">
-          </a>
-        </div>
-
-        <div class="collapse navbar-collapse header-collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="https://www.materialscloud.org/learn">LEARN</a></li>
-            <li class="active"><a ui-sref="main.work" href="https://www.materialscloud.org/work">WORK</a></li>
-            <li><a href="https://www.materialscloud.org/discover">DISCOVER</a></li>
-            <li><a href="https://www.materialscloud.org/explore">EXPLORE</a></li>
-            <li><a href="https://www.materialscloud.org/archive">ARCHIVE</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <main style="padding: 5px; background-color: #f0f6f9" >
-    <div class="container" style="margin: 40px auto">
-      <div class="row">
-        <div class="col s12" id="col_s12" style="margin-bottom: 30px">
+  <div class="container">
 {%- endblock body_header -%}
 
 {%- block body_loop -%}
-          {% if resources.theme == 'dark' %}
-          <div class="jp-Notebook theme-dark">
-          {% else %}
-          <div class="jp-Notebook theme-light">
-          {% endif %}
-            <ol class="breadcrumb ng-isolate-scope" ncy-breadcrumb="">
-              <li ng-repeat="step in steps" ng-class="{active: $last}" ng-switch="$last || !!step.abstract" class="ng-scope" style="">
-                <a ng-switch-when="false" href="https://www.materialscloud.org/work/" class="ng-binding ng-scope" style="">Work</a>
-              </li>
-              <li ng-repeat="step in steps" ng-class="{active: $last}" ng-switch="$last || !!step.abstract" class="ng-scope" style="">
-                <a ng-switch-when="false" href="https://www.materialscloud.org/work/tools" class="ng-binding ng-scope" style="">Tools</a>
-              </li>
-              <li ng-repeat="step in steps" ng-class="{active: $last}" ng-switch="$last || !!step.abstract" class="ng-scope active" style="">
-                <span ng-switch-when="true" class="ng-binding ng-scope">{{nb_title}}</span>
-              </li>
-            </ol>
-            {{ super() }}
-          </div>
+      {% if resources.theme == 'dark' %}
+      <div class="jp-Notebook theme-dark">
+      {% else %}
+      <div class="jp-Notebook theme-light">
+      {% endif %}
+        {{ super() }}
+      </div>
 {%- endblock body_loop -%}
 
 {%- block body_footer -%}
-        </div>
-      </div>
-    </div>
-  </main>
+  </div>
   {{ super() }}
+  <div>
+    <p style="text-align: center;">
+      Hosted on <a href="https://materialscloud.org" target="_blank"><img src="{{ resources.include_url('static/images/MaterialsCloud_Horizontal_White.png') }}" alt="Materials Cloud" width="95" height="25"></a>
+    </p>
+  </div>
   {{ resources.include_js("static/js/materialize.min.js") }}
+  <div style="position: relative" data-iframe-height></div>
 {%- endblock body_footer -%}

@@ -1,6 +1,6 @@
 {
   "VoilaConfiguration": {
-    "enable_nbextensions": true,  
+    "enable_nbextensions": true,
     "theme": "light",
     "template": "materialscloud"
   }
