@@ -37,10 +37,6 @@ body {
   width: 100%;
 }
 
-.voila-spinner-color1{
-  fill: {{ bar_color }};
-}
-
 a {
   target: "_blank";
 }
@@ -366,7 +362,6 @@ a.jupyter-widgets.jupyter-button:disabled {
 
 {%- endblock html_head_css -%}
 
-{%- block body -%}
 {%- block body_header -%}
   {{ super() }}
   <div class="container">
@@ -393,5 +388,3 @@ a.jupyter-widgets.jupyter-button:disabled {
   {{ resources.include_js("static/js/materialize.min.js") }}
   <div style="position: relative" data-iframe-height></div>
 {%- endblock body_footer -%}
-
-{%- endblock body -%}

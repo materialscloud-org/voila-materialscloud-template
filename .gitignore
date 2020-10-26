@@ -2,4 +2,4 @@
 .*.swp
 .ipynb_checkpoints/
 
-.env
+example-notebooks/*.json

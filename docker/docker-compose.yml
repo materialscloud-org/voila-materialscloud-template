@@ -14,4 +14,4 @@ services:
       - ../example-notebooks:/home/voila/example-notebooks
     ports:
       - 8866:8866
-    command: "voila --no-browser --Voila.config_file_paths=/home/voila/example-notebooks/ --debug example-notebooks"
+    command: "voila --Voila.config_file_paths=/home/voila/example-notebooks/ --debug example-notebooks"
