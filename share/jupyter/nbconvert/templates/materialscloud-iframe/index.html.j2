@@ -17,13 +17,15 @@
 
 <link rel="shortcut icon" href="{{ resources.include_url('static/images/favicon.png') }}" type="image/svg"/>
 
+<meta name="viewport" content="width=devide-width, initial-scale=1">
+
 <style type="text/css">
 body {
   background-color: var(--jp-layout-color0);
   overflow-y: scroll;
 }
 
-/* Overwrite default value, workaround for not breaking materialize */
+/* Overwrite default value, workaround (from materialize) */
 .jp-Notebook {
   padding: 0px;
 }
@@ -381,17 +383,17 @@ a.jupyter-widgets.jupyter-button:disabled {
   </script>
   <div id="rendered_cells" style="display: none">
 
-  <div class="container">
+  <div id="container" class="container" style="margin: auto; max-width: 800px;">
 {%- endblock body_header -%}
 
 {%- block body_loop -%}
-      {% if resources.theme == 'dark' %}
-      <div class="jp-Notebook theme-dark">
-      {% else %}
-      <div class="jp-Notebook theme-light">
-      {% endif %}
-        {{ super() }}
-      </div>
+    {% if resources.theme == 'dark' %}
+    <div class="jp-Notebook theme-dark">
+    {% else %}
+    <div class="jp-Notebook theme-light">
+    {% endif %}
+      {{ super() }}
+    </div>
 {%- endblock body_loop -%}
 
 {%- block body_footer -%}
@@ -402,6 +404,5 @@ a.jupyter-widgets.jupyter-button:disabled {
       Hosted on <a href="https://materialscloud.org" target="_blank"><img src="{{ resources.include_url('static/images/MaterialsCloud_Horizontal_White.png') }}" alt="Materials Cloud" width="95" height="25"></a>
     </p>
   </div>
-  {{ resources.include_js("static/js/materialize.min.js") }}
   <div style="position: relative" data-iframe-height></div>
 {%- endblock body_footer -%}
