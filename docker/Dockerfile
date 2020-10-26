@@ -4,6 +4,3 @@ WORKDIR /home/voila
 
 COPY requirements.txt .
 RUN pip install -r requirements.txt
-
-COPY docker/entrypoint.sh .
-ENTRYPOINT [ "/home/voila/entrypoint.sh" ]
