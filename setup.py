@@ -44,7 +44,7 @@ setup(
         'develop': ExtraDevelop,
         'install': ExtraInstall,
     },
-    install_requires=['voila~=0.2.3'],
+    install_requires=['voila~=0.2.4'],
     extras_require={
         'dev': open(Path(__file__).parent.joinpath('requirements.txt').resolve()).readlines() + ['pylint']
     }
