@@ -12,7 +12,7 @@
   </style>
 {% endmacro %}
 
-{% macro html() %}
+{% macro html(base_url) %}
   <div id="loading">
     <img style="width: 150px; text-align: center;" src="{{ base_url }}voila/static/images/mcloud_spinner.svg"/>
     <h2 id="loading_text">Running {{nb_title}}...</h2>
