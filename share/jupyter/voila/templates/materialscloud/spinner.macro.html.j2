@@ -7,6 +7,7 @@
         align-items: center;
         justify-content: center;
         height: 75vh;
+        min-height: 225px;
         font-family: sans-serif;
     }
   </style>
@@ -15,7 +16,7 @@
 {% macro html(base_url) %}
   <div id="loading">
     <img style="width: 150px; text-align: center;" src="{{ base_url }}voila/static/images/mcloud_spinner.svg"/>
-    <h2 id="loading_text">Running {{nb_title}}...</h2>
-    Loading... If this takes longer than normal (max. 5 seconds), <a href="{{ open_url }}">click here</a>.
+    <h2 id="loading_text">Loading {{nb_title}}...</h2>
+    <p>If this takes longer than normal (max. 5 seconds), <a href="{{ open_url }}">click here</a>.</p>
   </div>
 {% endmacro %}
