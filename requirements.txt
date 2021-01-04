@@ -1,4 +1,4 @@
-invoke==1.4.1
+invoke==1.5.0
 ipywidgets==7.5.1
 voila==0.2.4
 widget-periodictable==2.1.5
