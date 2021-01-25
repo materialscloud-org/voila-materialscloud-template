@@ -7,7 +7,7 @@ services:
     build:
       context: ..
       dockerfile: docker/Dockerfile
-    restart: always
+    # restart: always
     volumes:
       - ../share/jupyter/voila/templates:/root/.local/share/jupyter/voila/templates
       - ../share/jupyter/nbconvert/templates:/root/.local/share/jupyter/nbconvert/templates
