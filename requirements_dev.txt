@@ -1,4 +1,4 @@
 invoke~=1.5
 ipywidgets~=7.6
-pylint~=2.8
+pylint~=2.9
 widget-periodictable~=2.1
