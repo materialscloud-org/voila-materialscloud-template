@@ -398,8 +398,8 @@ a.jupyter-widgets.jupyter-button:disabled {
         <div class="collapse navbar-collapse header-collapse">
           <ul class="nav navbar-nav">
             <li><a href="https://www.materialscloud.org/learn">LEARN</a></li>
-            <li class="active"><a ui-sref="main.work" href="https://www.materialscloud.org/work">WORK</a></li>
-            <li><a href="https://www.materialscloud.org/discover">DISCOVER</a></li>
+            <li><a href="https://www.materialscloud.org/work">WORK</a></li>
+            <li class="active"><a ui-sref="main.discover" href="https://www.materialscloud.org/discover">DISCOVER</a></li>
             <li><a href="https://www.materialscloud.org/explore">EXPLORE</a></li>
             <li><a href="https://www.materialscloud.org/archive">ARCHIVE</a></li>
           </ul>
@@ -418,16 +418,14 @@ a.jupyter-widgets.jupyter-button:disabled {
         <div class="mcloud-page-content panel panel-default">
           <ol class="breadcrumb ng-isolate-scope" ncy-breadcrumb="">
             <li ng-repeat="step in steps" ng-class="{active: $last}" ng-switch="$last || !!step.abstract" class="ng-scope">
-              <a ng-switch-when="false" href="https://www.materialscloud.org/work/" class="ng-binding ng-scope">Work</a>
-            </li>
-            <li ng-repeat="step in steps" ng-class="{active: $last}" ng-switch="$last || !!step.abstract" class="ng-scope">
-              <a ng-switch-when="false" href="https://www.materialscloud.org/work/tools" class="ng-binding ng-scope">Tools</a>
+              <a ng-switch-when="false"
+              href="https://www.materialscloud.org/discover/" class="ng-binding ng-scope">Discover</a>
             </li>
             <li ng-repeat="step in steps" ng-class="{active: $last}" ng-switch="$last || !!step.abstract" class="ng-scope active">
               <span ng-switch-when="true" class="ng-binding ng-scope">{{nb_title}}</span>
             </li>
           </ol>
-          <div id="container" class="container" style="margin: auto; max-width: 800px;">
+          <div id="container" class="container" style="margin: auto;">
 {%- endblock body_header -%}
 
 {%- block body_loop -%}
