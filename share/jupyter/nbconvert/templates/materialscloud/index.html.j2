@@ -446,17 +446,19 @@ a.jupyter-widgets.jupyter-button:disabled {
   </div>
   {{ super() }}
   
-  <!-- Add script Plausible and pass domain name as parameter -->
-  <script type="text/javascript">
-    var header = document.getElementsByTagName("head")[0];
+<!-- Add script Plausible and pass domain name as parameter -->
+<script type="text/javascript">
+    var header = document.getElementsByTagName("head")[0];    
     var plausible = document.createElement("script");
     var domain_name = window.location.hostname;
+    var rollup_name = "plausible-rollup.materialscloud.org";
 
     plausible.async = "";
     plausible.defer = "";
-    plausible.dataset["domain"] = domain_name;
+    plausible.dataset["domain"] = domain_name + "," + rollup_name;
     plausible.src = "https://plausible.io/js/plausible.js";
     header.appendChild(plausible);
-  </script>
-  <!-- end Plausible analytics -->
+</script>
+<!-- end Plausible analytics -->
+
 {%- endblock body_footer -%}
