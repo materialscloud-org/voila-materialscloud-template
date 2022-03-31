@@ -1,4 +1,4 @@
-invoke~=1.6
-ipywidgets~=7.6
+invoke~=1.7
+ipywidgets~=7.7
 pylint~=2.13
-widget-periodictable~=2.1
+widget-periodictable~=3.0
