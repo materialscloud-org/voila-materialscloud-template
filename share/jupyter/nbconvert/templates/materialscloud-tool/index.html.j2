@@ -1,0 +1,466 @@
+{%- extends 'lab/index.html.j2' -%}
+
+{# this overrides the default behavior of directly starting the kernel and executing the notebook #}
+{% block notebook_execute %}
+{% endblock notebook_execute %}
+
+{% set nb_title = nb.metadata.get('title', '') or resources['metadata']['name'] %}
+
+{%- block html_head_css -%}
+{{ super() }}
+{% if resources.theme == 'dark' %}
+{% set bar_color = '#555454' %}
+{% else %}
+{% set bar_color = '#f3f700' %}
+{% endif %}
+{{ resources.include_css("static/css/mcloud_theme.min.css") }}
+
+<link rel="shortcut icon" href="{{ resources.include_url('static/images/favicon.png') }}" type="image/svg"/>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style type="text/css">
+body {
+  background-color: var(--jp-layout-color0);
+  overflow-y: scroll;
+}
+
+/* Overwrite default value, workaround (from materialize) */
+.jp-Notebook {
+  padding: 0px;
+}
+
+.nav-wrapper {
+  background-color: {{ bar_color }};
+}
+
+.brand-logo {
+  height: 90%;
+  width: 100%;
+}
+
+a.anchor-link {
+  display: none;
+}
+.highlight  {
+  margin: 0.4em;
+}
+/* we keep the DOM for nbconvert the same as for voila, but hide the status icon */
+#kernel-status-icon {
+  display: none;
+}
+
+/* General Jupyter button styling */
+.jupyter-button {
+  padding: 5px 10px;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: visible;
+  text-transform: none;
+  text-align: center;
+  vertical-align: middle;
+  touch-action: manipulation;
+  font-size: 14px;
+  font-weight: normal;
+  cursor: pointer;
+
+  margin-bottom: 0;
+  line-height: 1.5;
+  box-shadow: none;
+
+  color: inherit;
+  font: inherit;
+  background-image: none;
+  border-radius: 1px;
+  /* border: 1px solid transparent; */
+  border: 1px solid #d8cece !important;
+  margin-right: 2px !important;
+  user-select: none;
+  -webkit-appearance: button;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.jupyter-button i.fa {
+  /* margin-right: var(--jp-widgets-inline-margin); */
+  pointer-events: none;
+}
+
+.jupyter-button:empty:before {
+  content: '\200b'; /* zero-width space */
+}
+
+.jupyter-widgets.jupyter-button:disabled {
+  cursor: default;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+a.jupyter-widgets.jupyter-button:disabled {
+  pointer-events: none;
+}
+
+.jupyter-button i.fa.center {
+  margin-right: 0;
+}
+
+.jupyter-button::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+.jupyter-button:hover:enabled,
+.jupyter-button:focus:enabled {
+  color: #839094;
+  text-decoration: none;
+  box-shadow: none !important;
+}
+
+.jupyter-button:active,
+.jupyter-button.mod-active {
+  outline: 0;
+  background-image: none;
+  /* -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); */
+  /* box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); */
+  box-shadow: none !important;
+}
+
+.jupyter-button:focus:enabled {
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+
+/* Button "Default" Styling */
+
+.jupyter-button.mod-default {
+  color: #000 !important;
+  background-color: #ecefed !important;
+  border-color: rgba(255, 255, 255, 0) !important;
+}
+
+.jupyter-button.mod-default.mod-focus, .jupyter-button.mod-default.focus, .jupyter-button.mod-default:focus {
+  color: #000 !important;
+  background-color: #d0d8d3 !important;
+  border-color: rgba(191, 191, 191, 0) !important;
+}
+
+.jupyter-button.mod-default:hover {
+  color: #000 !important;
+  background-color: #d0d8d3 !important;
+  border-color: rgba(224, 224, 224, 0) !important;
+}
+
+.jupyter-button.mod-default.mod-active, .jupyter-button.mod-default.active, .jupyter-button.mod-default:active {
+  color: #000 !important;
+  background-color: #d0d8d3 !important;
+  border-color: rgba(224, 224, 224, 0) !important;
+  background-image: none !important;
+}
+
+.jupyter-button.mod-default:active:hover, .jupyter-button.mod-default:active:focus, .jupyter-button.mod-default:active.focus, .jupyter-button.mod-default.active:hover, .jupyter-button.mod-default.active:focus, .jupyter-button.mod-default.active.focus {
+  color: #000 !important;
+  background-color: #bdc7c0 !important;
+  border-color: rgba(191, 191, 191, 0) !important;
+}
+.jupyter-button.mod-default.disabled:hover, .jupyter-button.mod-default.disabled:focus, .jupyter-button.mod-default.disabled.focus, .jupyter-button.mod-default[disabled]:hover, .jupyter-button.mod-default[disabled]:focus, .jupyter-button.mod-default[disabled].focus {
+  background-color: #ecefed !important;
+  border-color: rgba(255, 255, 255, 0) !important;
+}
+
+/* Button "Primary" Styling */
+
+.jupyter-button.mod-primary {
+  color: #fff !important;
+  background-color: #3560A0 !important;
+  border-color: rgba(255, 255, 255, 0) !important;
+}
+
+.jupyter-button.mod-primary.mod-focus, .jupyter-button.mod-primary.focus, .jupyter-button.mod-primary:focus {
+  color: #fff !important;
+  background-color: #28497a !important;
+  border-color: rgba(191, 191, 191, 0) !important;
+}
+
+.jupyter-button.mod-primary:hover {
+  color: #fff !important;
+  background-color: #28497a !important;
+  border-color: rgba(224, 224, 224, 0) !important;
+}
+
+.jupyter-button.mod-primary.mod-active, .jupyter-button.mod-primary.active, .jupyter-button.mod-primary:active {
+  color: #fff !important;
+  background-color: #28497a !important;
+  border-color: rgba(224, 224, 224, 0) !important;
+  background-image: none !important;
+}
+
+.jupyter-button.mod-primary:active:hover, .jupyter-button.mod-primary:active:focus, .jupyter-button.mod-primary:active.focus, .jupyter-button.mod-primary.active:hover, .jupyter-button.mod-primary.active:focus, .jupyter-button.mod-primary.active.focus {
+  color: #fff !important;
+  background-color: #1f395f !important;
+  border-color: rgba(191, 191, 191, 0) !important;
+}
+.jupyter-button.mod-primary.disabled:hover, .jupyter-button.mod-primary.disabled:focus, .jupyter-button.mod-primary.disabled.focus, .jupyter-button.mod-primary[disabled]:hover, .jupyter-button.mod-primary[disabled]:focus, .jupyter-button.mod-primary[disabled].focus {
+  background-color: #3560A0 !important;
+  border-color: rgba(255, 255, 255, 0) !important;
+}
+
+/* Button "Success" Styling */
+
+.jupyter-button.mod-success {
+  color: #fff !important;
+  background-color: #82c833 !important;
+  border-color: rgba(255, 255, 255, 0) !important;
+}
+
+.jupyter-button.mod-success.mod-focus, .jupyter-button.mod-success.focus, .jupyter-button.mod-success:focus {
+  color: #fff !important;
+  background-color: #689f29 !important;
+  border-color: rgba(191, 191, 191, 0) !important;
+}
+
+.jupyter-button.mod-success:hover {
+  color: #fff !important;
+  background-color: #689f29 !important;
+  border-color: rgba(224, 224, 224, 0) !important;
+}
+
+.jupyter-button.mod-success.mod-active, .jupyter-button.mod-success.active, .jupyter-button.mod-success:active {
+  color: #fff !important;
+  background-color: #689f29 !important;
+  border-color: rgba(224, 224, 224, 0) !important;
+  background-image: none !important;
+}
+
+.jupyter-button.mod-success:active:hover, .jupyter-button.mod-success:active:focus, .jupyter-button.mod-success:active.focus, .jupyter-button.mod-success.active:hover, .jupyter-button.mod-success.active:focus, .jupyter-button.mod-success.active.focus {
+  color: #fff !important;
+  background-color: #558321 !important;
+  border-color: rgba(191, 191, 191, 0) !important;
+}
+.jupyter-button.mod-success.disabled:hover, .jupyter-button.mod-success.disabled:focus, .jupyter-button.mod-success.disabled.focus, .jupyter-button.mod-success[disabled]:hover, .jupyter-button.mod-success[disabled]:focus, .jupyter-button.mod-success[disabled].focus {
+  background-color: #82c833 !important;
+  border-color: rgba(255, 255, 255, 0) !important;
+}
+
+/* Button "Info" Styling */
+
+.jupyter-button.mod-info {
+  color: #fff !important;
+  background-color: #308cbc !important;
+  border-color: rgba(255, 255, 255, 0) !important;
+}
+
+.jupyter-button.mod-info.mod-focus, .jupyter-button.mod-info.focus, .jupyter-button.mod-info:focus {
+  color: #fff !important;
+  background-color: #266e93 !important;
+  border-color: rgba(191, 191, 191, 0) !important;
+}
+
+.jupyter-button.mod-info:hover {
+  color: #fff !important;
+  background-color: #266e93 !important;
+  border-color: rgba(224, 224, 224, 0) !important;
+}
+
+.jupyter-button.mod-info.mod-active, .jupyter-button.mod-info.active, .jupyter-button.mod-info:active {
+  color: #fff !important;
+  background-color: #266e93 !important;
+  border-color: rgba(224, 224, 224, 0) !important;
+  background-image: none !important;
+}
+
+.jupyter-button.mod-info:active:hover, .jupyter-button.mod-info:active:focus, .jupyter-button.mod-info:active.focus, .jupyter-button.mod-info.active:hover, .jupyter-button.mod-info.active:focus, .jupyter-button.mod-info.active.focus {
+  color: #fff !important;
+  background-color: #1e5977 !important;
+  border-color: rgba(191, 191, 191, 0) !important;
+}
+.jupyter-button.mod-info.disabled:hover, .jupyter-button.mod-info.disabled:focus, .jupyter-button.mod-info.disabled.focus, .jupyter-button.mod-info[disabled]:hover, .jupyter-button.mod-info[disabled]:focus, .jupyter-button.mod-info[disabled].focus {
+  background-color: #308cbc !important;
+  border-color: rgba(255, 255, 255, 0) !important;
+}
+
+/* Button "Warning" Styling */
+
+.jupyter-button.mod-warning {
+  color: #fff !important;
+  background-color: #dd8338 !important;
+  border-color: rgba(255, 255, 255, 0) !important;
+}
+
+.jupyter-button.mod-warning.mod-focus, .jupyter-button.mod-warning.focus, .jupyter-button.mod-warning:focus {
+  color: #fff !important;
+  background-color: #c16a21 !important;
+  border-color: rgba(191, 191, 191, 0) !important;
+}
+
+.jupyter-button.mod-warning:hover {
+  color: #fff !important;
+  background-color: #c16a21 !important;
+  border-color: rgba(224, 224, 224, 0) !important;
+}
+
+.jupyter-button.mod-warning.mod-active, .jupyter-button.mod-warning.active, .jupyter-button.mod-warning:active {
+  color: #fff !important;
+  background-color: #c16a21 !important;
+  border-color: rgba(224, 224, 224, 0) !important;
+  background-image: none !important;
+}
+
+.jupyter-button.mod-warning:active:hover, .jupyter-button.mod-warning:active:focus, .jupyter-button.mod-warning:active.focus, .jupyter-button.mod-warning.active:hover, .jupyter-button.mod-warning.active:focus, .jupyter-button.mod-warning.active.focus {
+  color: #fff !important;
+  background-color: #a3591c !important;
+  border-color: rgba(191, 191, 191, 0) !important;
+}
+.jupyter-button.mod-warning.disabled:hover, .jupyter-button.mod-warning.disabled:focus, .jupyter-button.mod-warning.disabled.focus, .jupyter-button.mod-warning[disabled]:hover, .jupyter-button.mod-warning[disabled]:focus, .jupyter-button.mod-warning[disabled].focus {
+  background-color: #dd8338 !important;
+  border-color: rgba(255, 255, 255, 0) !important;
+}
+
+/* Button "Danger" Styling */
+
+.jupyter-button.mod-danger {
+  color: #fff !important;
+  background-color: #C64537 !important;
+  border-color: rgba(255, 255, 255, 0) !important;
+}
+
+.jupyter-button.mod-danger.mod-focus, .jupyter-button.mod-danger.focus, .jupyter-button.mod-danger:focus {
+  color: #fff !important;
+  background-color: #9e372c !important;
+  border-color: rgba(191, 191, 191, 0) !important;
+}
+
+.jupyter-button.mod-danger:hover {
+  color: #fff !important;
+  background-color: #9e372c !important;
+  border-color: rgba(224, 224, 224, 0) !important;
+}
+
+.jupyter-button.mod-danger.mod-active, .jupyter-button.mod-danger.active, .jupyter-button.mod-danger:active {
+  color: #fff !important;
+  background-color: #9e372c !important;
+  border-color: rgba(224, 224, 224, 0) !important;
+  background-image: none !important;
+}
+
+.jupyter-button.mod-danger:active:hover, .jupyter-button.mod-danger:active:focus, .jupyter-button.mod-danger:active.focus, .jupyter-button.mod-danger.active:hover, .jupyter-button.mod-danger.active:focus, .jupyter-button.mod-danger.active.focus {
+  color: #fff !important;
+  background-color: #822d24 !important;
+  border-color: rgba(191, 191, 191, 0) !important;
+}
+.jupyter-button.mod-danger.disabled:hover, .jupyter-button.mod-danger.disabled:focus, .jupyter-button.mod-danger.disabled.focus, .jupyter-button.mod-danger[disabled]:hover, .jupyter-button.mod-danger[disabled]:focus, .jupyter-button.mod-danger[disabled].focus {
+  background-color: #C64537 !important;
+  border-color: rgba(255, 255, 255, 0) !important;
+}
+</style>
+
+{%- endblock html_head_css -%}
+
+{%- block body_header -%}
+  <!-- Copy of body_header from voila/templates/lab/index.html.j2 -->
+  {% if resources.theme == 'dark' %}
+  <body class="jp-Notebook theme-dark" data-base-url="{{resources.base_url}}voila/">
+  {% else %}
+  <body class="jp-Notebook theme-light" data-base-url="{{resources.base_url}}voila/">
+  {% endif %}
+  {{ spinner.html(resources.base_url) }}  <!-- Special line needed to locate MaterialsCloud spinner - this is the reason not to use super() -->
+  <script>
+  var voila_process = function(cell_index, cell_count) {
+    var el = document.getElementById("loading_text")
+    el.innerHTML = `Executing ${cell_index} of ${cell_count}`
+  }
+  var voila_heartbeat = function() {
+    console.log('Ok, voila is still executing...')
+  }
+  </script>
+  <div id="rendered_cells" style="display: none">
+
+  <!-- MaterialsCloud header -->
+  <header>
+    <div class="mcloud-header header" id="mcloudHeader">
+      <div class="navbar navbar-default navbar-static-top">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button class="navbar-toggle" data-target=".header-collapse"
+            data-toggle="collapse" type="button">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="https://www.materialscloud.org/home">
+            <img src="{{ resources.base_url }}voila/static/images/mcloud_logo.png">
+          </a>
+        </div>
+
+        <div class="collapse navbar-collapse header-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="https://www.materialscloud.org/learn">LEARN</a></li>
+            <li class="active"><a ui-sref="main.work" href="https://www.materialscloud.org/work">WORK</a></li>
+            <li><a href="https://www.materialscloud.org/discover">DISCOVER</a></li>
+            <li><a href="https://www.materialscloud.org/explore">EXPLORE</a></li>
+            <li><a href="https://www.materialscloud.org/archive">ARCHIVE</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="mcloud-wrapper">
+    <div class="mcloud-status-bar ng-scope" data-ng-controller="MessageCtrl">
+      <div id="mcloud-alert" ng-class="message_type" class="alert ng-binding-alert-info"></div>
+    </div>
+    <div class="mcloud-message-container"> </div>
+    <div class="mcloud-container">
+      <div class="mcloud-page-container ng-scope">
+        <div class="mcloud-page-content panel panel-default">
+          <ol class="breadcrumb ng-isolate-scope" ncy-breadcrumb="">
+            <li ng-repeat="step in steps" ng-class="{active: $last}" ng-switch="$last || !!step.abstract" class="ng-scope">
+              <a ng-switch-when="false" href="https://www.materialscloud.org/work/" class="ng-binding ng-scope">Work</a>
+            </li>
+            <li ng-repeat="step in steps" ng-class="{active: $last}" ng-switch="$last || !!step.abstract" class="ng-scope">
+              <a ng-switch-when="false" href="https://www.materialscloud.org/work/tools" class="ng-binding ng-scope">Tools</a>
+            </li>
+            <li ng-repeat="step in steps" ng-class="{active: $last}" ng-switch="$last || !!step.abstract" class="ng-scope active">
+              <span ng-switch-when="true" class="ng-binding ng-scope">{{nb_title}}</span>
+            </li>
+          </ol>
+          <div id="container" class="container" style="margin: auto;">
+{%- endblock body_header -%}
+
+{%- block body_loop -%}
+            {% if resources.theme == 'dark' %}
+            <div class="jp-Notebook theme-dark">
+            {% else %}
+            <div class="jp-Notebook theme-light">
+            {% endif %}
+              {{ super() }}
+            </div>
+{%- endblock body_loop -%}
+
+{%- block body_footer -%}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{ super() }}
+  
+<!-- Add script Plausible and pass domain name as parameter -->
+<script type="text/javascript">
+    var header = document.getElementsByTagName("head")[0];    
+    var plausible = document.createElement("script");
+    var domain_name = window.location.hostname;
+    var rollup_name = "plausible-rollup.materialscloud.org";
+
+    plausible.async = "";
+    plausible.defer = "";
+    plausible.dataset["domain"] = domain_name + "," + rollup_name;
+    plausible.src = "https://plausible.io/js/plausible.js";
+    header.appendChild(plausible);
+</script>
+<!-- end Plausible analytics -->
+
+{%- endblock body_footer -%}

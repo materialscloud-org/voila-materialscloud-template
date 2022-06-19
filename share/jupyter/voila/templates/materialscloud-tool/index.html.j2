@@ -1,0 +1,38 @@
+{%- extends 'nbconvert/templates/materialscloud/index.html.j2' -%}
+
+{%- block html_head_css -%}
+{{ super() }}
+<style>
+  /* unhide the icon */
+  #kernel-status-icon {
+    display: unset;
+  }
+
+  /* Workaround for the Select/Dropdown widgets to be visible: */
+  select {
+    display: block;
+  }
+
+  /* Workaround for the RadioButtons widgets to be visible: */
+  [type="radio"]:not(:checked), [type="radio"]:checked {
+    position: static;
+    opacity: 1;
+    pointer-events: auto;
+  }
+</style>
+{%- endblock html_head_css -%}
+
+{% block footer_js %}
+  {{ super() }}
+  <script type="text/javascript">
+    requirejs(['static/voila'], function(voila) {
+      (async function() {
+        var kernel = await voila.connectKernel();
+
+        kernel.statusChanged.connect(() => {
+          // console.log(kernel.status);
+        });
+      })();
+    });
+  </script>
+{% endblock footer_js %}

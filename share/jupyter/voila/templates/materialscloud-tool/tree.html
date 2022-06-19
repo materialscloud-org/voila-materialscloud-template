@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block head %}
+<style type="text/css">
+  .voila-logo:hover {
+    background-color: transparent !important;
+  }
+</style>
+{% endblock %}
+
+{% block body %}
+{% for content in contents.content %}
+{% if content.name == 'index.ipynb' %}
+<script type="text/javascript">
+  location.replace("{{base_url}}voila/render/{{content.path}}")
+</script>
+{% endif %}
+{% endfor %}
+{% endblock %}
