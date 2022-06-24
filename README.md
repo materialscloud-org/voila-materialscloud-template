@@ -19,8 +19,19 @@ pip install voila-materialscloud-template
 
 ## Usage
 
+There are two different templates for deploying Voilà at Materials Cloud website, which are "materialscloud-tool" and "materialscloud-discover".
+
+At [Materials Cloud](https://materialscloud.org), the [WORK](https://www.materialscloud.org/work) section have a collection of simulation tools and services. To deploy such applications, one need use the "materialscloud-tool" template as:
+
 ```bash
-voila --template=materialscloud example.ipynb
+voila --template=materialscloud-tool example.ipynb
+```
+
+In the [DISCOVER](https://www.materialscloud.org/discover) section, it shows curated research data with tailored visualizations. One need to use the "materialscloud-discover" template
+to deploy the apps.
+
+```bash
+voila --template=materialscloud-discover example.ipynb
 ```
 
 ## License
