@@ -1,5 +1,5 @@
 invoke==1.7.1
 ipywidgets==7.7.0
 voila==0.3.5
-jupyter-core==4.9.2
+jupyter-core==4.10.0
 widget-periodictable==3.0.0
