@@ -1,2 +1,2 @@
 voila~=0.5.0
-jupyter-core~=4.11.1
+jupyter-core~=4.11.2
