@@ -1,4 +1,4 @@
-invoke==1.7.1
+invoke==2.2.0
 ipywidgets==7.7.1
 voila==0.5.0
 jupyter-core==5.3.1
