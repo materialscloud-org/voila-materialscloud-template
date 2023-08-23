@@ -29,6 +29,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install -U setuptools wheel
         pip install -U build
+        pip install -r requirements_base.txt
 
     - name: Build package with build
       run: python -m build --sdist --wheel --outdir dist/
