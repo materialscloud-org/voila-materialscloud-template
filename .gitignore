@@ -3,3 +3,4 @@
 .ipynb_checkpoints/
 voila_materialscloud_template.egg-info/
 example-notebooks/*.json
+dist/

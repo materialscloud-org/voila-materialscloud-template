@@ -1,0 +1,38 @@
+name: CI - Build package
+
+on:
+  pull_request:
+  push:
+    branches:
+    - develop
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.8", "3.9", "3.10"]
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Setup Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install Python dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -U setuptools wheel
+        pip install -U build
+        pip install -r requirements_base.txt
+
+    - name: Build package with build
+      run: python -m build --sdist --wheel --outdir dist/
+
+    - name: Build package with setup.py
+      run: python setup.py sdist bdist_wheel
