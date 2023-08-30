@@ -62,7 +62,7 @@ jobs:
           sed "s/THIS_PROJECT/voila-materialscloud-template==0.3.16/" -i .ci/dummy_heroku_app/requirements.txt
         fi
         echo "requirements.txt:"
-        cat ${{ github.workspace }}/.ci/dummy_heroku_app/requirements.txt
+        cat .ci/dummy_heroku_app/requirements.txt
         echo " "
         echo "check content in /tmp/app:"
         ls -lah /tmp/app
