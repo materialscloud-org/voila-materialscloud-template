@@ -61,6 +61,8 @@ jobs:
         else
           sed "s/THIS_PROJECT/voila-materialscloud-template==0.3.16/" -i .github/dummy_heroku_app/requirements.txt
         fi
+        echo "requirements.txt:"
+        cat .github/dummy_heroku_app/requirements.txt
 
     - name: Test building dummy app with herokuish
       run: /bin/herokuish test
