@@ -66,7 +66,7 @@ jobs:
       shell: bash
 
     - name: Copy dummy app to /tmp/app
-      run: mkdir -p /tmp/app && cp -r .ci/dummy_heroku_app /tmp/app
+      run: mkdir -p /tmp/app && cp -r .ci/dummy_heroku_app /tmp/app && ls -l /tmp/app
 
     - name: Test building dummy app with herokuish
       run: /bin/herokuish test
