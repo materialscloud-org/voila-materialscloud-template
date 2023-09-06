@@ -67,3 +67,9 @@ jobs:
 
     - name: Test building dummy app with herokuish
       run: /bin/herokuish test
+
+    - name: Check template has been correctly copied
+      run: |
+        ./copy_voila_template.py list
+        ./copy_voila_template.py list | grep "'materialscloud'"
+      shell: bash
