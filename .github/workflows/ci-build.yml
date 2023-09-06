@@ -43,8 +43,6 @@ jobs:
 
     container:
       image: gliderlabs/herokuish:latest
-      # volumes:
-      #   - ${{ github.workspace }}/.ci/dummy_heroku_app:/tmp/app
 
     steps:
     - name: Checkout repository
@@ -53,17 +51,17 @@ jobs:
     - name: Update installation branch
       run: |
         if [ "${{ matrix.project-version }}" = "ref" ]; then
-          sed "s|THIS_PROJECT|voila-materialscloud-template @ https://github.com/materialscloud-org/voila-materialscloud-template/archive/${{ github.ref }}.zip|" -i .ci/dummy_heroku_app/requirements.txt
+          sed "s|THIS_PROJECT|voila-materialscloud-template @ https://github.com/materialscloud-org/voila-materialscloud-template/archive/${{ github.ref }}.zip|" -i .github/dummy_heroku_app/requirements.txt
         else
-          sed "s/THIS_PROJECT/voila-materialscloud-template==0.3.17/" -i .ci/dummy_heroku_app/requirements.txt
+          sed "s/THIS_PROJECT/voila-materialscloud-template==0.3.17/" -i .github/dummy_heroku_app/requirements.txt
         fi
         echo "requirements.txt:"
-        cat .ci/dummy_heroku_app/requirements.txt
+        cat .github/dummy_heroku_app/requirements.txt
       shell: bash
 
     - name: Copy dummy app to /tmp/app
       run: |
-        cp -r .ci/dummy_heroku_app /tmp
+        cp -r .github/dummy_heroku_app /tmp
         mv /tmp/dummy_heroku_app /tmp/app
         ls -l /tmp/app
 
