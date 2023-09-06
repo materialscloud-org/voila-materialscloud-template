@@ -33,9 +33,6 @@ jobs:
     - name: Build package with build
       run: python -m build
 
-    - name: Build package with setup.py
-      run: python setup.py sdist bdist_wheel
-
   herokuish-build:
     runs-on: ubuntu-latest
 
