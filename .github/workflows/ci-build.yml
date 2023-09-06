@@ -55,7 +55,7 @@ jobs:
         if [ "${{ matrix.project-version }}" = "ref" ]; then
           sed "s|THIS_PROJECT|voila-materialscloud-template @ https://github.com/materialscloud-org/voila-materialscloud-template/archive/${{ github.ref }}.zip|" -i .ci/dummy_heroku_app/requirements.txt
         else
-          sed "s/THIS_PROJECT/voila-materialscloud-template==0.3.16/" -i .ci/dummy_heroku_app/requirements.txt
+          sed "s/THIS_PROJECT/voila-materialscloud-template==0.3.17/" -i .ci/dummy_heroku_app/requirements.txt
         fi
         echo "requirements.txt:"
         cat .ci/dummy_heroku_app/requirements.txt
