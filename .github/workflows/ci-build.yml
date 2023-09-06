@@ -70,6 +70,7 @@ jobs:
 
     - name: Check template has been correctly copied
       run: |
+        pip install -r requirements.txt
         ./copy_voila_template.py list
         ./copy_voila_template.py list | grep "'materialscloud'"
       shell: bash
