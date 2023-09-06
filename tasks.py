@@ -41,5 +41,8 @@ def update_version(_, version=""):
     update_file(
         TOP_DIR.joinpath("setup.py"), (r"version=.*,", f"version='{version}',")
     )
+    update_file(
+        TOP_DIR.joinpath(".github/workflows/ci-build.yml"), (r'voila-materialscloud-template==.*/"', f'voila-materialscloud-template=={version}/"')
+    )
 
     print(f"Bumped version to {version} !")

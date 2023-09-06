@@ -70,15 +70,29 @@ def copy_template(name: str):
         print(f"Successfully copied {name!r} to {dest} !")
 
 
+def list_templates(*args, **kwargs) -> None:
+    """Print content in template folders."""
+    voila_templates_dir, nbconvert_templates_dir = get_voila_templates_dir()
+    print(f"Voilà templates found at: {voila_templates_dir}")
+    print(f"Voilà templates: {os.listdir(voila_templates_dir)}")
+    print(f"Nbconvert templates found at: {nbconvert_templates_dir}")
+    print(f"Nbconvert templates: {os.listdir(nbconvert_templates_dir)}")
+
+
 if __name__ == "__main__":
     if len(sys.argv) > 1:
         template = sys.argv[1]
     else:
-        print("No template supplied to be copied!")
+        print("No template supplied to be copied! (Pass 'list' to list all current templates.)")
         sys.exit(0)
 
+    if template == "list":
+        _func = list_templates
+    else:
+        _func = copy_template
+
     try:
-        copy_template(template)
+        _func(template)
     except Exception as exc:  # pylint: disable=broad-except
         sys.exit(f"ERROR while copying template: {exc}")
     else:
