@@ -42,7 +42,7 @@ with open(TOP_DIR.joinpath("requirements_dev.txt")) as handle:
 
 setup(
     name='voila-materialscloud-template',
-    version='0.4.0',
+    version='0.4.1',
     packages=[],
     author='Dou Du and Casper Welzel Andersen',
     author_email='dou.du@epfl.ch',
