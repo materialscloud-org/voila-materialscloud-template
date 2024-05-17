@@ -1,4 +1,5 @@
 # Voilà template for Materials Cloud
+[![PyPI - Version](https://img.shields.io/pypi/v/voila-materialscloud-template?color=4CC61E)](https://pypi.org/project/voila-materialscloud-template/)
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/materialscloud-org/voila-materialscloud-template/develop?urlpath=%2Fvoila%2Frender%2Fexample-notebooks%2Fexample.ipynb)
 
 This is the Voilà template for Materials Cloud, implements the standard header and CSS.
@@ -64,6 +65,14 @@ docker compose up --build
 and access via `http://localhost:8866/`. The template and other voila configuration is specified in `voila.json`.
 
 Note: maybe there is an easier setup, e.g. with live-reload or similar.
+
+### Making a new release
+
+To release a new version, just make a new release on Github with the correct version tag, without updating any versions manually. This will start the GitHub action that will
+* update version numbers in the repo and commits it;
+* tags this new commit with the version, overwriting the tag that was made by the Github release;
+* pushes commit & tag to Github;
+* publishes new version on PYPI.
 
 ## License
 
