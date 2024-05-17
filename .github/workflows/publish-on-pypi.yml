@@ -49,7 +49,10 @@ jobs:
         branch: main
 
     - name: Build source distribution
-      run: python -m build
+      # only build the source distribution and skip wheel,
+      # as wheel installation won't run the post-install script
+      # (and is the default)
+      run: python -m build --sdist
 
     - name: Publish package to PyPI
       uses: pypa/gh-action-pypi-publish@release/v1
