@@ -46,7 +46,7 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         force: true
         tags: true
-        branch: develop
+        branch: main
 
     - name: Build source distribution
       run: python -m build

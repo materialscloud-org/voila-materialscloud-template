@@ -1,6 +1,6 @@
 # Voilà template for Materials Cloud
 [![PyPI - Version](https://img.shields.io/pypi/v/voila-materialscloud-template?color=4CC61E)](https://pypi.org/project/voila-materialscloud-template/)
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/materialscloud-org/voila-materialscloud-template/develop?urlpath=%2Fvoila%2Frender%2Fexample-notebooks%2Fexample.ipynb)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/materialscloud-org/voila-materialscloud-template/main?urlpath=%2Fvoila%2Frender%2Fexample-notebooks%2Fexample.ipynb)
 
 This is the Voilà template for Materials Cloud, implements the standard header and CSS.
 
