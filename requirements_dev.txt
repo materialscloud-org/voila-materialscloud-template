@@ -1,5 +1,5 @@
 invoke~=2.2
 ipywidgets~=8.1
-pylint~=2.17
+pylint~=3.2
 jupyterlab~=4.0
 widget-periodictable~=4.1
