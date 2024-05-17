@@ -13,5 +13,5 @@ services:
       - ../share/jupyter/nbconvert/templates:/root/.local/share/jupyter/nbconvert/templates
       - ../example-notebooks:/home/voila/example-notebooks
     ports:
-      - 8866:8866
-    command: "voila --Voila.config_file_paths=/home/voila/example-notebooks/ --debug example-notebooks"
+      - "8866:8866"
+    command: "voila  --Voila.ip='0.0.0.0' --Voila.config_file_paths=/home/voila/example-notebooks/ --debug example-notebooks"

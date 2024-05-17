@@ -33,7 +33,7 @@ TOP_DIR = Path(__file__).parent.resolve()
 with open(TOP_DIR.joinpath("README.md")) as handle:
     README = handle.read()
 
-with open(TOP_DIR.joinpath("requirements_base.txt")) as handle:
+with open(TOP_DIR.joinpath("requirements.txt")) as handle:
     REQUIREMENTS_BASE = [f"{_.strip()}" for _ in handle.readlines() if " " not in _]
 
 with open(TOP_DIR.joinpath("requirements_dev.txt")) as handle:

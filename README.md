@@ -1,15 +1,12 @@
-# Voilà template for Materials Cloud  
-
-This is the Voilà template for the Materials Cloud project.
-
-It implements the standard Materials Cloud header and CSS.
-
-The template is called `materialscloud` and can be invoked either by using the `--template=materialscloud` `voila` CLI option, setting it explicitly in a Notebook's metadata or in a Jupyter config file.
-See [the Voilà documentation](https://voila.readthedocs.io/en/stable/customize.html#controlling-the-nbconvert-template) on how to invoke templates for more information.
-
-## Try it with Binder!
-
+# Voilà template for Materials Cloud
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/materialscloud-org/voila-materialscloud-template/develop?urlpath=%2Fvoila%2Frender%2Fexample-notebooks%2Fexample.ipynb)
+
+This is the Voilà template for Materials Cloud, implements the standard header and CSS.
+
+Three templates are provided:
+* `materialscloud-tool` - highlights the [WORK](https://www.materialscloud.org/work)/Tools section in the header/breadcrumbs.
+* `materialscloud-discover` - highlights the [DISCOVER](https://www.materialscloud.org/discover) section in the header/breadcrumbs.
+* `materialscloud-iframe` - just adds a simple "Hosted on Materials Cloud" note at the bottom.
 
 ## Installation
 
@@ -17,22 +14,56 @@ See [the Voilà documentation](https://voila.readthedocs.io/en/stable/customize.
 pip install voila-materialscloud-template
 ```
 
+This installs the templates in the correct Jupyter path (using `copy_voila_template.py`).
+
 ## Usage
 
-There are two different templates for deploying Voilà at Materials Cloud website, which are "materialscloud-tool" and "materialscloud-discover".
-
-At [Materials Cloud](https://materialscloud.org), the [WORK](https://www.materialscloud.org/work) section have a collection of simulation tools and services. To deploy such applications, one need use the "materialscloud-tool" template as:
+The main way is to use the `voila --template` option, e.g.:
 
 ```bash
 voila --template=materialscloud-tool example.ipynb
 ```
+Alternatively, you can write a `voila.json` file containing
 
-In the [DISCOVER](https://www.materialscloud.org/discover) section, it shows curated research data with tailored visualizations. One need to use the "materialscloud-discover" template
-to deploy the apps.
+```json
+{
+  "VoilaConfiguration": {
+    "template": "materialscloud-tool"
+  },
+  ...
+}
+```
+
+and passing its path with
 
 ```bash
-voila --template=materialscloud-discover example.ipynb
+voila --Voila.config_file_paths=<...> example.ipynb
 ```
+
+There are also other options, see [the Voilà documentation](https://voila.readthedocs.io/en/stable/customize.html#controlling-the-nbconvert-template) for more information.
+
+## Development
+
+Option 1:
+
+```bash
+pip install -e .[dev]
+```
+
+Note: this will copy the templates to the jupyter folder, and they need to be modified directly there or re-copied if new tests are required.
+
+Option 2:
+
+It's more convenient to use a docker container and rebuild after modification:
+
+```bash
+cd docker
+docker compose up --build
+```
+
+and access via `http://localhost:8866/`. The template and other voila configuration is specified in `voila.json`.
+
+Note: maybe there is an easier setup, e.g. with live-reload or similar.
 
 ## License
 
