@@ -56,6 +56,10 @@ setup(
         'develop': ExtraDevelop,
         'install': ExtraInstall,
     },
+    setup_requires=[
+        'setuptools>=42.0.0',
+        'jupyter-core~=5.3.1',
+    ],
     install_requires=REQUIREMENTS_BASE,
     extras_require={'dev': REQUIREMENTS_DEV}
 )
