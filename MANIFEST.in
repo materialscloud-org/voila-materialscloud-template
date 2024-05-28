@@ -1,5 +1,0 @@
-include LICENSE
-include README.md
-recursive-include share *
-include copy_voila_template.py
-include requirements*.txt
