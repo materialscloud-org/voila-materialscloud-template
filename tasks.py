@@ -1,10 +1,9 @@
-from pathlib import Path
 import re
 import sys
+from pathlib import Path
 from typing import Tuple
 
 from invoke import task
-
 
 TOP_DIR = Path(__file__).parent.resolve()
 
@@ -39,7 +38,7 @@ def update_version(_, version=""):
         )
 
     update_file(
-        TOP_DIR.joinpath("setup.py"), (r"version=.*,", f"version='{version}',")
+        TOP_DIR.joinpath("pyproject.toml"), (r"version = .*", f'version = "{version}"')
     )
 
     print(f"Bumped version to {version} !")
