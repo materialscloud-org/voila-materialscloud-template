@@ -1,0 +1,43 @@
+[build-system]
+requires = ["hatchling >=1.5"]
+build-backend = "hatchling.build"
+
+[project]
+name = "voila-materialscloud-template"
+version = "0.4.1"
+description = 'Voilà template for Materials Cloud.'
+authors = [{ name = "The Materials Cloud team" }]
+urls = { Source = 'https://github.com/materialscloud-org/voila-materialscloud-template' }
+license = { file = 'LICENSE.txt' }
+readme = "README.md"
+keywords = ['voila', 'jupyter', 'materialscloud']
+classifiers = [
+  "Intended Audience :: Developers",
+  "Intended Audience :: System Administrators",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: BSD License",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3",
+]
+
+requires-python = ">=3.8"
+dependencies = ["voila~=0.4.4", "jupyter-core~=5.3.1"]
+
+[project.optional-dependencies]
+dev = [
+  "invoke~=2.2",
+  "ipywidgets~=8.1",
+  "pylint~=2.17",
+  "jupyterlab~=4.0",
+  "widget-periodictable~=4.1",
+]
+
+[tool.hatch.build.targets.sdist]
+artifacts = ["share"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["share"]
+
+# copy the templates to the correct location
+[tool.hatch.build.targets.wheel.shared-data]
+"share/jupyter" = "share/jupyter"

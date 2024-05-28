@@ -1,2 +1,0 @@
-voila~=0.4.4
-jupyter-core~=5.3.1

@@ -2,10 +2,7 @@ FROM python:3.9
 
 WORKDIR /home/voila
 
-COPY requirements.txt .
-RUN pip install -r requirements.txt
-
-COPY requirements_dev.txt .
-RUN pip install -r requirements_dev.txt
+COPY pyproject.toml LICENSE.txt README.md ./
+RUN pip install .[dev]
 
 EXPOSE 8866
